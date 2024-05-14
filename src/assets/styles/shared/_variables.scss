@@ -1,0 +1,15 @@
+@import "fonts";
+
+$heading-font-family: "Cardo";
+$main-font-family: "JosefinSans";
+
+$black: #000;
+$white: #fff;
+$brown-primary: #8c6754;
+
+@mixin display-flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
