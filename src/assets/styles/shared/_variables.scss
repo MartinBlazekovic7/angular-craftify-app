@@ -13,3 +13,20 @@ $brown-primary: #8c6754;
   justify-content: $justify;
   align-items: $align;
 }
+
+@mixin main-button {
+  background-color: $brown-primary;
+  color: $white;
+  border: none;
+  padding: 20px;
+  width: 200px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: $main-font-family;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: darken($brown-primary, 10%);
+  }
+}
