@@ -1,0 +1,68 @@
+<div class="navigation__Bar">
+  <div class="navigationBar__MenuButton">
+    <button (click)="sidebarVisible = true"><i class="pi pi-bars"></i></button>
+  </div>
+  <div class="navigationBar__Title">
+    <img src="../../../assets/images/craftify-logo.svg" alt="Craftify Logo" />
+  </div>
+  <div class="navigationBar__UserButton">
+    <button (click)="op.show($event)"><i class="pi pi-user"></i></button>
+  </div>
+</div>
+
+<p-sidebar #sidebarRef [(visible)]="sidebarVisible">
+  <ng-template pTemplate="headless">
+    <div class="sidebarMenu__Container">
+      <div class="sidebarMenu__Menu">
+        <a
+          (click)="sidebarVisible = false"
+          class="sidebarMenu__MenuItem"
+          [routerLink]="['']"
+          [routerLinkActive]="['routeSelected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >HOME</a
+        >
+        <a
+          (click)="sidebarVisible = false"
+          class="sidebarMenu__MenuItem"
+          [routerLink]="['tutorials']"
+          [routerLinkActive]="['routeSelected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >TUTORIALS</a
+        >
+        <a
+          (click)="sidebarVisible = false"
+          class="sidebarMenu__MenuItem"
+          [routerLink]="['news']"
+          [routerLinkActive]="['routeSelected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >NEWS</a
+        >
+        <a
+          (click)="sidebarVisible = false"
+          class="sidebarMenu__MenuItem"
+          [routerLink]="['profile']"
+          [routerLinkActive]="['routeSelected']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >MY PROFILE</a
+        >
+      </div>
+    </div>
+  </ng-template>
+</p-sidebar>
+
+<p-overlayPanel #op>
+  <div class="userOverlay__Container">
+    <div class="userOverlay__Items">
+      <a class="userOverlay__Item" (click)="op.hide()" [routerLink]="['login']"
+        >LOGIN</a
+      >
+      <a
+        class="userOverlay__Item"
+        (click)="op.hide()"
+        [routerLink]="['registration']"
+        >REGISTER</a
+      >
+    </div>
+  </div>
+</p-overlayPanel>
