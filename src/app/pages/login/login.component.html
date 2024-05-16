@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="loginPage__Container">
+  <div class="loginPage__FormContainer">
+    <div class="loginPage__BackButton">
+      <i class="pi pi-arrow-left"></i>
+      <a href="">Back</a>
+    </div>
+    <h2>LOGIN</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        placeholder="Password"
+      />
+      <i>Don't have an account? <a href="registration">Register</a></i>
+      <button type="submit" label="Login">SUBMIT</button>
+    </form>
+  </div>
+  <div class="loginPage__ImageContainer">
+    <img src="../../../assets/images/login-page.jpg" alt="Login Page Image" />
+  </div>
+</div>
