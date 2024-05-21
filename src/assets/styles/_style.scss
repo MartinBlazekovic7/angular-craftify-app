@@ -9,9 +9,11 @@
 
 /* Components */
 @import "components/navigation-bar";
+@import "components/comments";
 
 /* Pages */
 @import "pages/home";
 @import "pages/login-register";
 @import "pages/news";
 @import "pages/tutorials";
+@import "pages/project";
