@@ -59,7 +59,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'project/:slug',
+    path: 'project/:id',
     loadComponent: () =>
       import('./pages/project/project.component').then(
         (m) => m.ProjectComponent
