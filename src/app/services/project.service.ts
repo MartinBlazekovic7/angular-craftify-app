@@ -12,4 +12,8 @@ export class ProjectService {
   getProjectById(id: number) {
     return this.http.get<Project>(`${environment.apiUrl}/project/${id}`);
   }
+
+  getAllProjects() {
+    return this.http.get<Project[]>(`${environment.apiUrl}/project/all`);
+  }
 }
