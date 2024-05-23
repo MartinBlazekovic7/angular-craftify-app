@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NewsDetailComponent } from './pages/news-detail/news-detail.component';
 
 export const routes: Routes = [
   {
@@ -66,7 +67,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'tutorial/:id',
+    path: 'tutorials/:id',
     loadComponent: () =>
       import('./pages/tutorial/tutorial.component').then(
         (m) => m.TutorialComponent

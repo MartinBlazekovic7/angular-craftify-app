@@ -4,6 +4,7 @@ import { UserData } from './user-data.interface';
 import { Media } from './media.interface';
 
 export interface Tutorial {
+  rating: Float32Array;
   id: number;
   title: string;
   content: string;
@@ -11,5 +12,4 @@ export interface Tutorial {
   category: Category;
   complexity: Complexity;
   mediaList: Media;
-  description: string;
 }

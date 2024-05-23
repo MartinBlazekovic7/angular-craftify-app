@@ -18,10 +18,10 @@
     </div>
   </div>
   <div class="news__List">
-    @for (item of newsList; track item) {
+    @for (item of newsDetail; track item) {
     <div class="news__Item">
       <div class="news__ItemImage">
-        <img src="{{ item.url }}" alt="News item" />
+        <img src="../../../assets/images/mason-jar-lanterns.jpg" alt="News item" />
       </div>
       <div class="news__ItemContent">
         <h2>{{ item.title }}</h2>

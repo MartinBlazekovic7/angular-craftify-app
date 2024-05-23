@@ -3,11 +3,13 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TutorialService } from '../../services/tutorial.service';
 import { Tutorial } from '../../models/tutorial.interface';
+import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-tutorial',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, InputTextModule],
   templateUrl: './tutorial.component.html',
   styleUrl: './tutorial.component.scss'
 })
