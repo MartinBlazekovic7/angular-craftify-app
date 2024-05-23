@@ -1,0 +1,23 @@
+<form [formGroup] = "projectForm" (ngSubmit) = "onSubmit()">
+    <label for="title">Title</label>
+    <input id="title" formControlName = "content" type="text"/>
+
+    <label for="content">Content</label>
+    <textarea id="content" formControlName="content"></textarea>
+
+    <label for="category">Category</label>
+    <select id="category" formControlName="category">
+        <option *ngFor="let category of categoryTags" [value]="category">{{category}}</option>
+    </select>
+
+    <label for="complexity">Complexity</label>
+    <select id="complexity" formControlName="complexity">
+        <option *ngFor="let complexity of complexityTags" [value]="complexity">{{complexity}}</option>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngIf ="submitMessage">
+    {{submitMessage}}
+</div>
