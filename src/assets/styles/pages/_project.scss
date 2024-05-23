@@ -61,3 +61,29 @@
     }
   }
 }
+
+.projectSearch {
+  &__Toolbar {
+    button {
+      @include main-button;
+
+      height: 40px;
+      padding: 0;
+    }
+  }
+
+  &__ListEmpty {
+    @include display-flex(column, center, center);
+
+    height: 200px;
+    width: 100%;
+  }
+
+  &__ResultsContainer {
+    position: relative;
+  }
+}
+
+.projectSearch__ItemContent {
+  width: 100%;
+}

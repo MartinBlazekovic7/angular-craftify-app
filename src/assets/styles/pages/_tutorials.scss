@@ -12,7 +12,8 @@
   }
 }
 
-.tutorials {
+.tutorials,
+.projectSearch {
   &__Toolbar {
     width: 100%;
     height: 80px;
@@ -30,7 +31,8 @@
   }
 }
 
-.tutorials {
+.tutorials,
+.projectSearch {
   &__List {
     display: flex;
     flex-direction: column;
