@@ -67,7 +67,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'tutorials/:id',
+    path: 'tutorial/:id',
     loadComponent: () =>
       import('./pages/tutorial/tutorial.component').then(
         (m) => m.TutorialComponent
