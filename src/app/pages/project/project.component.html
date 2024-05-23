@@ -1,13 +1,14 @@
+@if(project) {
 <div class="projectPage__Wrapper contentWrapper">
   <div class="projectPage__Content">
     <div class="projectPage__Header">
-      <i>{{ project?.user?.username }}</i>
-      <h1>{{ project?.title }}</h1>
+      <i>{{ project.user.username }}</i>
+      <h1>{{ project.title }}</h1>
       <div class="projectPage__Features">
         <div class="buttons">
           <button (click)="likeProject()">
             <i class="pi pi-thumbs-up"></i>
-            <span>{{ project?.userLikes?.length }}</span>
+            <span>{{ project.userLikes.length }}</span>
           </button>
           <button (click)="inFavorites = !inFavorites">
             @if(inFavorites){
@@ -22,20 +23,20 @@
         </div>
         <div class="features">
           <span
-            >{{ project?.category?.name }},
-            {{ project?.complexity?.name }}</span
+            >{{ project.category.name }}, {{ project.complexity.name }}</span
           >
         </div>
       </div>
-      <p>{{ project?.description }}</p>
+      <p>{{ project.description }}</p>
       <img
         src="../../../assets/images/mason-jar-lanterns.jpg"
         alt="Project image"
       />
     </div>
 
-    <p>{{ project?.content }}</p>
+    <p>{{ project.content }}</p>
   </div>
 </div>
 
-<app-comments [comments]="project?.comments"></app-comments>
+<app-comments [comments]="project.comments"></app-comments>
+}

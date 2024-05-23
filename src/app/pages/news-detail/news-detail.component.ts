@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewsDetailService } from '../../services/newsDetail.service';
-import { NewsDetail } from '../../models/newsDetal.interface';
+import { NewsDetail } from '../../models/newsDetail.interface';
 
 @Component({
   selector: 'app-news-detail',

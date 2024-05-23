@@ -1,4 +1,6 @@
-.projectPage {
+.projectPage,
+.newsDetailPage,
+.tutorialDetailPage {
   &__Header {
     h1 {
       font-family: $heading-font-family;

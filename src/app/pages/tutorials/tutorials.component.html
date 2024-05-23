@@ -19,12 +19,12 @@
     </div>
   </div>
   <div class="tutorials__List">
-    @for (item of tutorialsList; track item) {
+    @for (item of tutorials; track item) {
     <div class="tutorials__Item">
       <div class="tutorials__ItemContent">
         <h2>{{ item.title }}</h2>
         <p>{{ item.content }}</p>
-        <a href="tutorials/{{ item.id }}">Read more</a>
+        <a href="tutorial/{{ item.id }}">Read more</a>
       </div>
       <div class="tutorials__ItemRating">
         <p>{{ item.rating }}</p>

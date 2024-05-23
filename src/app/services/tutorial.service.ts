@@ -10,6 +10,10 @@ export class TutorialService{
     constructor(private http: HttpClient){}
 
     getTutorialById(id:number){
-        return this.http.get<Tutorial>(`${environment.apiUrl}/project/${id}`);
+        return this.http.get<Tutorial>(`${environment.apiUrl}/tutorial/${id}`);
+    }
+
+    getAllTutorials(){
+        return this.http.get<Tutorial[]>(`${environment.apiUrl}/tutorial/all`);
     }
 }

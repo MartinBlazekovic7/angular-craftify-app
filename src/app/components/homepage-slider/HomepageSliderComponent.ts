@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProjectService } from '../../services/project.service';
-import { Subscription } from 'rxjs';
-import { Project } from '../../models/project.interface';
-import { CarouselModule } from 'primeng/carousel';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { CarouselModule } from "primeng/carousel";
+import { Subscription } from "rxjs";
+import { Project } from "../../models/project.interface";
+import { ProjectService } from "../../services/project.service";
+
 
 @Component({
   selector: 'app-homepage-slider',
@@ -12,12 +13,14 @@ import { RouterModule } from '@angular/router';
   templateUrl: './homepage-slider.component.html',
   styleUrl: './homepage-slider.component.scss',
 })
+
 export class HomepageSliderComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
 
   projects?: Project[] = [];
 
-  constructor(private projectService: ProjectService) {}
+
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -34,6 +37,7 @@ export class HomepageSliderComponent implements OnInit, OnDestroy {
       },
     });
   }
+
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
