@@ -1,0 +1,41 @@
+@if(projects) {
+<p-carousel
+  [value]="projects"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  autoplayInterval="5000"
+>
+  <ng-template let-project pTemplate="item">
+    <div class="slider__Container">
+      <div class="slider__Text">
+        <div class="category">
+          <i>{{ project?.category.name }}, {{ project?.complexity.name }}</i>
+        </div>
+        <div class="title">
+          <h2>{{ project?.title }}</h2>
+        </div>
+        <div class="description">
+          <p>{{ project?.description }}</p>
+        </div>
+        <div class="likes">
+          <i class="pi pi-thumbs-up"></i>
+          <span>{{ project?.userLikes?.length }}</span>
+        </div>
+        <div class="user">
+          <i>{{ project?.user?.username }}</i>
+        </div>
+        <div class="read-more">
+          <a href="project/{{ project?.id }}">Read more</a>
+        </div>
+      </div>
+      <div class="slider__Image">
+        <img
+          src="../../../assets/images/mason-jar-lanterns.jpg"
+          alt="Slider image"
+        />
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
+}
