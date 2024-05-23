@@ -21,12 +21,15 @@
     @for (item of newsDetail; track item) {
     <div class="news__Item">
       <div class="news__ItemImage">
-        <img src="../../../assets/images/mason-jar-lanterns.jpg" alt="News item" />
+        <img
+          src="../../../assets/images/mason-jar-lanterns.jpg"
+          alt="News item"
+        />
       </div>
       <div class="news__ItemContent">
         <h2>{{ item.title }}</h2>
         <p>{{ item.content }}</p>
-        <a href="news/{{ item.id }}">Read more</a>
+        <a href="news-detail/{{ item.id }}">Read more</a>
       </div>
     </div>
     }

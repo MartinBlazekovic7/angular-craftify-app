@@ -1,13 +1,14 @@
-<div class="tutorialPage__Wrapper contentWrapper">
-    <div class="tutorialPage__Content">
-        <div class="tutorialPage__Header">
-            <i>{{newsDetail?.user?.username}}</i>
-            <h1>{{newsDetail?.title}}</h1>
-            <p>{{newsDetail?.description}}</p>
-            <img 
-                src="../../../assets/images/mason-jar-lanterns.jpg" 
-                alt="Tutorial image">
-        </div>
-        <p>{{newsDetail?.content}}</p>
+@if (newsDetail) {
+<div class="newsDetailPage__Wrapper contentWrapper">
+  <div class="newsDetailPage__Content">
+    <div class="newsDetailPage__Header">
+      <h1>{{ newsDetail.title }}</h1>
+      <img
+        src="../../../assets/images/mason-jar-lanterns.jpg"
+        alt="News image"
+      />
     </div>
+    <p>{{ newsDetail.content }}</p>
+  </div>
 </div>
+}

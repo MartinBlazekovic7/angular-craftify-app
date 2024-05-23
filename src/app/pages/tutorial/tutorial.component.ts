@@ -11,9 +11,8 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
   imports: [CommonModule, InputTextModule],
   templateUrl: './tutorial.component.html',
-  styleUrl: './tutorial.component.scss'
+  styleUrl: './tutorial.component.scss',
 })
-
 export class TutorialComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
 

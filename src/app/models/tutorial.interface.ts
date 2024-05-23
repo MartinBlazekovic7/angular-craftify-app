@@ -11,5 +11,5 @@ export interface Tutorial {
   user: UserData;
   category: Category;
   complexity: Complexity;
-  mediaList: Media;
+  mediaList: Media[];
 }
