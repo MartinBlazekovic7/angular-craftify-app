@@ -73,6 +73,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'create-project',
+    loadComponent: () =>
+      import('./pages/project-form/project-form.component').then(
+        (m) => m.ProjectFormComponent
+      ),
+  },
+
+  {
     path: 'news-detail/:id',
     loadComponent: () =>
       import('./pages/news-detail/news-detail.component').then(

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Project } from '../models/project.interface';
 import { FilterInterface } from '../models/filter.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,9 @@ export class ProjectService {
       `${environment.apiUrl}/project/filter`,
       filter
     );
+  }
+
+  submitProject(projectData: any): Observable<any>{
+    return this.http.post(`${environment.apiUrl}/project`, projectData);
   }
 }
