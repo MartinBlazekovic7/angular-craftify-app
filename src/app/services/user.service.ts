@@ -5,6 +5,7 @@ import { environment } from "../../environments/environment";
 import { Comment } from "../models/comment.interface";
 import { LikeData } from "../models/like.interface";
 import { Project } from "../models/project.interface";
+import { UserData } from "../models/user-data.interface";
 
 @Injectable({
     providedIn:'root'
@@ -35,5 +36,9 @@ export class userService {
     
     removeUserCategory(userId:number, categoryId: number){
         return this.http.delete(`${environment.apiUrl}/category/${categoryId}/user/${userId}`)
+    }
+
+    updateUser(userId:number ){
+        return this.http.put(`${environment.apiUrl}/users/${userId}`, userId);
     }
 }

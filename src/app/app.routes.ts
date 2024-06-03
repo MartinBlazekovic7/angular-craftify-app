@@ -59,6 +59,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'profile/edit/:id',
+    loadComponent: () =>
+      import('./pages/user-settings/user-settings.component').then(
+        (m) => m.UserSettingsComponent
+      ),
+  },
+  {
     path: 'project/:id',
     loadComponent: () =>
       import('./pages/project/project.component').then(

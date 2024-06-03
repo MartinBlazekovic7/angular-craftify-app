@@ -1,0 +1,72 @@
+.editProfilePage{
+    &__Container{
+        width: 100%;
+        height: calc(100vh - 80px);
+        @include display-flex(row, space-between, center);
+    }
+
+    &__FormContainer{
+        position: relative;
+        @include display-flex(column, center, center);
+        width: 40%;
+        height: 100%;
+
+        h2 {
+            font-family: $heading-font-family;
+            color: $black;
+            margin-bottom: 20px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+
+            input{
+                margin-bottom: 20px;
+                @include main-input
+            }
+
+            i{
+                margin-bottom: 16px;
+                text-align: center;
+
+                a{
+                    color: $brown-primary;
+                    text-decoration: none;
+                }
+            }
+            button{
+                @include main-button;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    &__BackButton {
+        position: absolute;
+        color: $black;
+        top: 0;
+        left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+
+        a,
+        i{
+            font-size: 16px;
+        }
+        a{
+            color: $black;
+            text-decoration: none;
+            padding-left: 8px;
+            padding-top: 2px;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

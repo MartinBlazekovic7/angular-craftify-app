@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { userService } from '../../services/user.service';
 import { Project } from '../../models/project.interface';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
