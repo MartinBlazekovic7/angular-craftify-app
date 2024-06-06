@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { userService } from '../../services/user.service';
 import { Project } from '../../models/project.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

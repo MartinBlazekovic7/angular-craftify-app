@@ -4,12 +4,13 @@ import { CarouselModule } from "primeng/carousel";
 import { Subscription } from "rxjs";
 import { Project } from "../../models/project.interface";
 import { ProjectService } from "../../services/project.service";
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-homepage-slider',
   standalone: true,
-  imports: [CarouselModule, RouterModule],
+  imports: [CarouselModule, RouterModule, TranslateModule],
   templateUrl: './homepage-slider.component.html',
   styleUrl: './homepage-slider.component.scss',
 })

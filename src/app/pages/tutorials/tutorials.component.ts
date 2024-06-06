@@ -5,11 +5,12 @@ import { TutorialService } from '../../services/tutorial.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tutorial } from '../../models/tutorial.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tutorials',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './tutorials.component.html',
   styleUrl: './tutorials.component.scss',
 })

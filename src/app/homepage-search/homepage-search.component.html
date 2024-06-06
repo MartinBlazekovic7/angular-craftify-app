@@ -8,7 +8,7 @@
     />
   </div>
 
-  <button (click)="searchProjects()">SEARCH</button>
+  <button (click)="searchProjects()">{{'homepageSearch.search' | translate}}</button>
 </div>
 
 <div class="contentWrapper projectSearch__ResultsContainer">
@@ -19,7 +19,7 @@
       <div class="projectSearch__ItemContent">
         <h2>{{ item.title }}</h2>
         <p>{{ item.content }}</p>
-        <a href="project/{{ item.id }}">Read more</a>
+        <a href="project/{{ item.id }}">{{'homepageSearch.readMore' | translate}}</a>
       </div>
     </div>
     <hr />
@@ -27,10 +27,10 @@
   </div>
   } @else {
   <div class="projectSearch__ListEmpty" *ngIf="searchedProjects">
-    <p>No projects found</p>
+    <p>{{'homepageSearch.noProject' | translate}}</p>
   </div>
   <div class="projectSearch__ListEmpty" *ngIf="!searchedProjects">
-    <p>Enter search term</p>
+    <p>{{'homepageSearch.enterTerm' | translate}}</p>
   </div>
   }
   <button class="clearButton" *ngIf="searchedProjects" (click)="clearSearch()">

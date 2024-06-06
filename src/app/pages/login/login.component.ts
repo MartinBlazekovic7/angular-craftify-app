@@ -5,12 +5,13 @@ import {
   UntypedFormBuilder,
   Validators,
 } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [CommonModule, InputTextModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

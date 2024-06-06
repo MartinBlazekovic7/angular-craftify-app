@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
 @Component({
   selector: 'app-project-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, TranslateModule],
   templateUrl: './project-form.component.html',
   styleUrl: './project-form.component.scss'
 })

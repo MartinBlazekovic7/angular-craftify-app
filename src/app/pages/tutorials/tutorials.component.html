@@ -7,7 +7,7 @@
 <div class="tutorialsPage__Wrapper contentWrapper">
   <div class="tutorials__Toolbar">
     <div class="tutorials__ToolbarTitle">
-      <h2>TUTORIALS</h2>
+      <h2>{{'tutorials.tutorials' | translate}}</h2>
     </div>
     <div class="tutorials__ToolbarSearch">
       <input
@@ -24,7 +24,7 @@
       <div class="tutorials__ItemContent">
         <h2>{{ item.title }}</h2>
         <p>{{ item.content }}</p>
-        <a href="tutorial/{{ item.id }}">Read more</a>
+        <a href="tutorial/{{ item.id }}">{{'tutorials.readMore' | translate}}</a>
       </div>
       <div class="tutorials__ItemRating">
         <p>{{ item.rating }}</p>

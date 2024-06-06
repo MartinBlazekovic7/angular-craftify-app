@@ -1,21 +1,21 @@
 <form [formGroup] = "projectForm" (ngSubmit) = "onSubmit()">
-    <label for="title">Title</label>
+    <label for="title">{{'projectForm.title' | translate}}</label>
     <input id="title" formControlName = "content" type="text"/>
 
-    <label for="content">Content</label>
+    <label for="content">{{'projectForm.content' | translate}}</label>
     <textarea id="content" formControlName="content"></textarea>
 
-    <label for="category">Category</label>
+    <label for="category">{{'projectForm.category' | translate}}</label>
     <select id="category" formControlName="category">
         <option *ngFor="let category of categoryTags" [value]="category">{{category}}</option>
     </select>
 
-    <label for="complexity">Complexity</label>
+    <label for="complexity">{{'projectForm.complexity' | translate}}</label>
     <select id="complexity" formControlName="complexity">
         <option *ngFor="let complexity of complexityTags" [value]="complexity">{{complexity}}</option>
     </select>
 
-    <button type="submit">Submit</button>
+    <button type="submit">{{'projectForm.submit' | translate}}</button>
 </form>
 
 <div *ngIf ="submitMessage">

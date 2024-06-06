@@ -2,29 +2,29 @@
     <div class="profile-summary">
         <h1>{{user.name}}</h1>
         <p>{{user.username}}</p>
-        <button **ngIf="isOwnProfile" (click)="navigateToCreateProject()">Create Project</button>
+        <button **ngIf="isOwnProfile" (click)="navigateToCreateProject()">{{'profile.createProject' | translate}}</button>
     </div>
     <div class="profile-details">
-        <h2>Categories of interest</h2>
+        <h2>{{'profile.category' | translate}}</h2>
         <ul>
             <li **ngFor= "let category of user.category">
                 {{category.name}}
                 <button **ngIf="isOwnProfile" (click)="removeCategory(categoryId, userId)"></button>
             </li>
         </ul>
-        <h2>Published Projects</h2>
+        <h2>{{'profile.publishedProjects' | translate}}</h2>
         <ul>
             <li **ngFor = "let projects of projects">{{projects.name}}</li>
         </ul>
-        <h2>Comments and Likes</h2>
+        <h2>{{'profile.commAndLike' | translate}}</h2>
         <div class="dropdown">
-            <button (click)="toggleCommentsLikes()">Show comments and Likes</button>
+            <button (click)="toggleCommentsLikes()">{{'profile.showCommAndLike' | translate}}</button>
             <div class="dropdown-content" **ngIf="showCommentsLikes">
-            <h3>Comments</h3>
+            <h3>{{'profile.comments' | translate}}</h3>
             <ul>
                 <li **ngFor = "let comment of comments">{{comment.cotent}}</li>
             </ul>
-            <h3>Likes</h3>
+            <h3>{{'profile.likes' | translate}}</h3>
             <ul>
                 <li **ngFor = "let like of likes">{{like.cotent}}</li>
             </ul>

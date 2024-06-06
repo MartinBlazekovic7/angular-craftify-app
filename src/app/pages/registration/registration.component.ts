@@ -5,12 +5,13 @@ import {
   Validators,
   UntypedFormBuilder,
 } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [CommonModule, InputTextModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })

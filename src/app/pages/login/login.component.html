@@ -2,9 +2,9 @@
   <div class="loginPage__FormContainer">
     <div class="loginPage__BackButton">
       <i class="pi pi-arrow-left"></i>
-      <a href="">Back</a>
+      <a href="">{{'login.back' | translate}}</a>
     </div>
-    <h2>LOGIN</h2>
+    <h2>{{'login.login' | translate}}</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <input
         type="text"
@@ -18,8 +18,8 @@
         formControlName="password"
         placeholder="Password"
       />
-      <i>Don't have an account? <a href="registration">Register</a></i>
-      <button type="submit" label="Login">SUBMIT</button>
+      <i>{{'login.message' | translate}} <a href="registration">{{'login.register' | translate}}</a></i>
+      <button type="submit" label="Login">{{'login.submit' | translate}}</button>
     </form>
   </div>
   <div class="loginPage__ImageContainer">
