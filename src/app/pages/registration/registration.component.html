@@ -7,30 +7,84 @@
     <h2>REGISTER</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
       <input type="text" pInputText formControlName="name" placeholder="Name" />
+      <ul
+        class="form__Errors"
+        *ngIf="name && name.invalid && (name.dirty || name.touched)"
+      >
+        <li class="form__Error" *ngIf="name?.errors?.['required']">
+          Name is required.
+        </li>
+      </ul>
       <input
         type="text"
         pInputText
         formControlName="username"
         placeholder="Username"
       />
+      <ul
+        class="form__Errors"
+        *ngIf="
+          username && username.invalid && (username.dirty || username.touched)
+        "
+      >
+        <li class="form__Error" *ngIf="username?.errors?.['required']">
+          Username is required.
+        </li>
+      </ul>
       <input
         type="text"
         pInputText
         formControlName="email"
         placeholder="Email"
       />
+      <ul
+        class="form__Errors"
+        *ngIf="email && email.invalid && (email.dirty || email.touched)"
+      >
+        <li class="form__Error" *ngIf="email?.errors?.['required']">
+          Email is required.
+        </li>
+        <li
+          class="form__Error"
+          *ngIf="email?.errors?.['email'] || email?.errors?.['pattern']"
+        >
+          Please enter a valid email address.
+        </li>
+      </ul>
       <input
         type="password"
         pInputText
         formControlName="password"
         placeholder="Password"
       />
+      <ul
+        class="form__Errors"
+        *ngIf="
+          password && password.invalid && (password.dirty || password.touched)
+        "
+      >
+        <li class="form__Error" *ngIf="password?.errors?.['required']">
+          Password is required.
+        </li>
+      </ul>
       <input
         type="password"
         pInputText
         formControlName="confirmPassword"
         placeholder="Confirm Password"
       />
+      <ul
+        class="form__Errors"
+        *ngIf="
+          confirmPassword &&
+          confirmPassword.invalid &&
+          (confirmPassword.dirty || confirmPassword.touched)
+        "
+      >
+        <li class="form__Error" *ngIf="confirmPassword?.errors?.['required']">
+          Confirm Password is required.
+        </li>
+      </ul>
       <i>Already have an account? <a href="login">Login</a></i>
       <button type="submit" label="Register">SUBMIT</button>
     </form>

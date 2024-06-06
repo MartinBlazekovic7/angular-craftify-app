@@ -1,3 +1,4 @@
+import { userService } from './../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -23,11 +24,45 @@ export class RegistrationComponent {
     confirmPassword: ['', [Validators.required]],
   });
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(
+    private fb: UntypedFormBuilder,
+    private userService: userService
+  ) {}
 
   onSubmit() {
-    alert(
-      `Email: ${this.registerForm.value.email} Name: ${this.registerForm.value.name} Username: ${this.registerForm.value.username} Password: ${this.registerForm.value.password} Confirm Password: ${this.registerForm.value.confirmPassword}`
-    );
+    if (!this.registerForm.valid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+
+    this.userService.createUser(this.registerForm.value).subscribe({
+      next: () => {
+        alert('User created successfully!');
+        this.registerForm.reset();
+      },
+      error: () => {
+        alert('User creation failed. Please try again.');
+      },
+    });
+  }
+
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get name() {
+    return this.registerForm.get('name');
+  }
+
+  get username() {
+    return this.registerForm.get('username');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
   }
 }
