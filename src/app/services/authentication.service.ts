@@ -12,6 +12,10 @@ import { environment } from '../../environments/environment';
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
+  isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
+
   login(loginData: LoginDto): Observable<Tokens> {
     return this.http
       .post<Tokens>(`${environment.apiUrl}/auth/login`, loginData)
@@ -29,7 +33,7 @@ export class AuthenticationService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/logout`, {});
+    return this.http.post(`${environment.apiUrl}/auth/logout`, {});
   }
 
   /* eslint-disable @typescript-eslint/no-explicit-any */

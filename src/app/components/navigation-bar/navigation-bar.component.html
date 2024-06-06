@@ -6,7 +6,12 @@
     <img src="../../../assets/images/craftify-logo.svg" alt="Craftify Logo" />
   </div>
   <div class="navigationBar__UserButton">
-    <button (click)="op.show($event)"><i class="pi pi-user"></i></button>
+    <button *ngIf="!isUserLoggedIn" (click)="op.show($event)">
+      <i class="pi pi-user"></i>
+    </button>
+    <button *ngIf="isUserLoggedIn" (click)="op2.show($event)">
+      <i class="pi pi-user"></i>
+    </button>
   </div>
 </div>
 
@@ -52,7 +57,7 @@
 </p-sidebar>
 
 <p-overlayPanel #op>
-  <div class="userOverlay__Container">
+  <div class="userOverlay__Container" *ngIf="!isUserLoggedIn">
     <div class="userOverlay__Items">
       <a class="userOverlay__Item" (click)="op.hide()" [routerLink]="['login']"
         >LOGIN</a
@@ -63,6 +68,20 @@
         [routerLink]="['registration']"
         >REGISTER</a
       >
+    </div>
+  </div>
+</p-overlayPanel>
+
+<p-overlayPanel #op2>
+  <div class="userOverlay__Container" *ngIf="isUserLoggedIn">
+    <div class="userOverlay__Items">
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['settings']"
+        >SETTINGS</a
+      >
+
       <button class="userOverlay__Item" (click)="logout()">LOG OUT</button>
     </div>
   </div>
