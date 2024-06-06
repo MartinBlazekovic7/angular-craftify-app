@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './utils/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,11 +21,13 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'registration',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/registration/registration.component').then(
         (m) => m.RegistrationComponent
@@ -32,6 +35,7 @@ export const routes: Routes = [
   },
   {
     path: 'favorites',
+    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/favorites/favorites.component').then(
         (m) => m.FavoritesComponent
@@ -39,6 +43,7 @@ export const routes: Routes = [
   },
   {
     path: 'settings',
+    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/settings/settings.component').then(
         (m) => m.SettingsComponent
@@ -60,6 +65,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile/edit/:id',
+    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/user-settings/user-settings.component').then(
         (m) => m.UserSettingsComponent
@@ -81,6 +87,7 @@ export const routes: Routes = [
   },
   {
     path: 'create-project',
+    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/project-form/project-form.component').then(
         (m) => m.ProjectFormComponent
@@ -97,5 +104,6 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home',
+    pathMatch: 'full',
   },
 ];
