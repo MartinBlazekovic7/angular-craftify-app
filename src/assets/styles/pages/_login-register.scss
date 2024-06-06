@@ -24,13 +24,14 @@
       width: 350px;
 
       input {
-        margin-bottom: 20px;
+        margin-top: 20px;
         @include main-input;
       }
 
       i {
         margin-bottom: 16px;
         text-align: center;
+        margin-top: 20px;
 
         a {
           color: $brown-primary;
@@ -89,5 +90,48 @@
 .registerPage {
   &__Container {
     @include display-flex(row-reverse, space-between, center);
+  }
+}
+
+.successModal {
+  width: 100%;
+  @include display-flex(column, center, center);
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  a,
+  button {
+    background-color: $brown-primary;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+
+    &:hover {
+      background-color: darken($brown-primary, 10%);
+    }
+  }
+}
+
+.form__Errors {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.form__Error {
+  display: block;
+  color: red;
+  font-size: 14px;
+  line-height: 1.43;
+
+  & + .form__Error {
+    margin-top: 5px;
   }
 }
