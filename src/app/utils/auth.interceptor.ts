@@ -40,8 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
             if (response && response.accessToken && response.token) {
               localStorage.setItem('accessToken', response.accessToken);
               localStorage.setItem('refreshToken', response.token);
-              //console.log('token', response.tokens.accessToken);
-              //console.log('refreshToken', response.tokens.refreshToken);
+
               req = req.clone({
                 setHeaders: {
                   Authorization: `Bearer ${response.accessToken}`,

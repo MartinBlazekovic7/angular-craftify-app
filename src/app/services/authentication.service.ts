@@ -20,6 +20,7 @@ export class AuthenticationService {
           if (response && response.accessToken && response.token) {
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
           } else {
             console.error('Token not found in response');
           }
@@ -40,7 +41,7 @@ export class AuthenticationService {
     }
     const body = {
       refreshToken: refreshToken,
-      expiredAccessToken: localStorage.getItem('token'),
+      expiredAccessToken: localStorage.getItem('accessToken'),
     };
     return this.http.post<any>(`${environment.apiUrl}/refreshToken`, body).pipe(
       tap((response) => {

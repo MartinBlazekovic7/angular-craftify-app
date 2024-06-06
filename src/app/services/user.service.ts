@@ -5,7 +5,6 @@ import { environment } from '../../environments/environment';
 import { Comment } from '../models/comment.interface';
 import { LikeData } from '../models/like.interface';
 import { Project } from '../models/project.interface';
-import { UserData } from '../models/user-data.interface';
 import { UserProfile } from '../models/user-profile.interface';
 @Injectable({
   providedIn: 'root',
