@@ -1,0 +1,36 @@
+<div class="profile-summary">
+    <h1>{{ user?.name }}</h1>
+    <p>{{ user?.username }}</p>
+    <button **ngIf="isUserLoggedIn" (click)="navigateToCreateProject()">Create Project</button>
+  </div>
+  
+  <div class="profile-details">
+    <h2>Categories of interest</h2>
+    <ul>
+      <li **ngFor="let category of user?.category">
+        {{ category.name }}
+        <button **ngIf="isOwnProfile" (click)="removeCategory(category.id, userid)">Remove</button>
+      </li>
+    </ul>
+  
+    <h2>Published Projects</h2>
+    <ul>
+      <li **ngFor="let project of projects">{{ project.name }}</li>
+    </ul>
+  
+    <h2>Comments and Likes</h2>
+    <div class="dropdown">
+      <button (click)="toggleCommentsLikes()">Show Comments and Likes</button>
+      <div class="dropdown-content" **ngIf="showCommentsLikes">
+        <h3>Comments</h3>
+        <ul>
+          <li **ngFor="let comment of comments">{{ comment.content }}</li>
+        </ul>
+        <h3>Likes</h3>
+        <ul>
+          <li *n*gFor="let like of likes">{{ like.content }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
