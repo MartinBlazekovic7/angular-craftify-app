@@ -44,8 +44,7 @@ export class AuthenticationService {
       return throwError(() => new Error('No refresh token found'));
     }
     const body = {
-      refreshToken: refreshToken,
-      expiredAccessToken: localStorage.getItem('accessToken'),
+      token: refreshToken,
     };
     return this.http.post<any>(`${environment.apiUrl}/refreshToken`, body).pipe(
       tap((response) => {
