@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Project } from '../models/project.interface';
+import { Project, ProjectForm } from '../models/project.interface';
 import { FilterInterface } from '../models/filter.interface';
 import { Observable } from 'rxjs';
 
@@ -27,8 +27,8 @@ export class ProjectService {
     );
   }
 
-  submitProject(projectData: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/project`, projectData);
+  submitProject(project: ProjectForm): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/project`, project);
   }
 
   editProject(projectData: any): Observable<any> {

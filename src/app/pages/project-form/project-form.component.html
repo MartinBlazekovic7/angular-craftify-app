@@ -1,23 +1,40 @@
-<form [formGroup] = "projectForm" (ngSubmit) = "onSubmit()">
-    <label for="title">Title</label>
-    <input id="title" formControlName = "content" type="text"/>
+<div class="projectForm">
+  <div class="projectForm__Container">
+    <div class="projectForm__FormContainer">
+      <h2>Create Project</h2>
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" type="text" />
 
-    <label for="content">Content</label>
-    <textarea id="content" formControlName="content"></textarea>
+        <label for="content">Content</label>
+        <textarea id="content" formControlName="content"></textarea>
 
-    <label for="category">Category</label>
-    <select id="category" formControlName="category">
-        <option *ngFor="let category of categoryTags" [value]="category">{{category}}</option>
-    </select>
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
 
-    <label for="complexity">Complexity</label>
-    <select id="complexity" formControlName="complexity">
-        <option *ngFor="let complexity of complexityTags" [value]="complexity">{{complexity}}</option>
-    </select>
+        <label for="category">Category</label>
+        <select id="category" formControlName="category">
+          <option *ngFor="let category of categoryTags" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
 
-    <button type="submit">Submit</button>
-</form>
+        <label for="complexity">Complexity</label>
+        <select id="complexity" formControlName="complexity">
+          <option
+            *ngFor="let complexity of complexityTags"
+            [value]="complexity.id"
+          >
+            {{ complexity.name }}
+          </option>
+        </select>
 
-<div *ngIf ="submitMessage">
-    {{submitMessage}}
+        <button type="submit">Submit</button>
+      </form>
+
+      <div *ngIf="submitMessage" class="projectForm__SubmitMessage">
+        {{ submitMessage }}
+      </div>
+    </div>
+  </div>
 </div>

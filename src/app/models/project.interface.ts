@@ -27,3 +27,17 @@ export interface ProjectDTO {
   complexityId: number;
   mediaList: Media[];
 }
+
+export interface ProjectForm {
+  userId: number;
+  title: string;
+  description: string;
+  content: string;
+  categoryId: number;
+  complexityId: number;
+  mediaList: Media[];
+  commentIdList: number[];
+  userLikesIdList: number[];
+  favoriteProjectUserIdList: number[];
+  projectFollowersIdList: number[];
+}
