@@ -6,11 +6,11 @@
       <h1>{{ project.title }}</h1>
       <div class="projectPage__Features">
         <div class="buttons">
-          <button (click)="likeProject()">
+          <button (click)="likeProject()" [disabled]="!isUserLoggedIn">
             <i class="pi pi-thumbs-up"></i>
             <span>{{ project.userLikes.length }}</span>
           </button>
-          <button (click)="inFavorites = !inFavorites">
+          <button *ngIf="isUserLoggedIn" (click)="addRemoveFavorite()">
             @if(inFavorites){
             <i class="pi pi-bookmark-fill"></i>
             } @else {

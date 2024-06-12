@@ -59,4 +59,17 @@ export class UserService {
   deleteUser(userId: number) {
     return this.http.delete(`${environment.apiUrl}/users/${userId}`);
   }
+
+  getFavorites(userId: number) {
+    return this.http.get<Project[]>(
+      `${environment.apiUrl}/users/favorite/${userId}`
+    );
+  }
+
+  addFavorite(userId: number, projectId: number, addRemove: string) {
+    return this.http.post(
+      `${environment.apiUrl}/users/${userId}/${addRemove}/${projectId}`,
+      {}
+    );
+  }
 }

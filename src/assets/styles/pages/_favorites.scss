@@ -1,0 +1,77 @@
+.favoritesList {
+  padding: 20px;
+
+  h2 {
+    font-family: $heading-font-family;
+    font-size: 2.5rem;
+    color: $black;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      @include display-flex(column, flex-start, flex-start);
+    }
+  }
+
+  &__Item a {
+    color: $brown-primary;
+    text-decoration: none;
+    margin-bottom: 12px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__ItemTitle {
+    h3 {
+      font-family: $heading-font-family;
+      font-size: 1.8rem;
+      color: $black;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__ItemContent {
+    p {
+      color: $black;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__ItemDescription {
+    p {
+      color: gray;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__ItemCategory {
+    span {
+      color: $brown-primary;
+      font-size: 1rem;
+    }
+  }
+
+  &__Empty {
+    text-align: center;
+    margin-top: 40px;
+
+    p {
+      font-size: 1.5rem;
+      color: gray;
+    }
+  }
+}
