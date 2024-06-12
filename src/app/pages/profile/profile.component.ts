@@ -38,8 +38,16 @@ export class ProfileComponent implements OnInit {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       const user: UserProfile = JSON.parse(userJson);
-      this.user = user;
       this.userId = user.id!;
+
+      this.userService.getUserProfile(this.userId).subscribe({
+        next: (user: UserProfile) => {
+          this.user = user;
+        },
+        error: () => {
+          this.user;
+        },
+      });
     }
 
     this.loadUserComments();

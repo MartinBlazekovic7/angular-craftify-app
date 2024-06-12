@@ -1,29 +1,43 @@
-<div *ngIf="user">
-  <h1>{{ user.name }}'s Profile</h1>
-  <p>Email: {{ user.email }}</p>
-  <p>Username: {{ user.username }}</p>
+<div *ngIf="user" class="userProfile">
+  <div class="userProfile__Header">
+    <h1>{{ user.name }}'s Profile</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>Username: {{ user.username }}</p>
+    <a href="user-settings" class="main-button">EDIT PROFILE</a>
+  </div>
 
-  <h2>Projects</h2>
-  <a href="project-form">CREATE PROJECT</a>
-  <ul>
-    <li *ngFor="let project of projects">
-      <h2>{{project.title}}</h2>
-    </li>
-  </ul>
+  <div class="userProfile__Projects">
+    <h2>Projects</h2>
+    <a href="project-form" class="main-button">CREATE PROJECT</a>
+    <ul>
+      <li *ngFor="let project of projects" class="userProfile__ProjectItem">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.content }}</p>
+        <a href="./project/{{ project.id }}">Open</a>
+      </li>
+    </ul>
+  </div>
 
-  <h2>Comments</h2>
-  <ul>
-    <li *ngFor="let comment of comments">
-      <p>{{comment.comment}}</p>
-      <small>Posted on : {{comment.commentTime | date:'short'}}</small>
-    </li>
-  </ul>
+  <div class="userProfile__Comments">
+    <h2>Comments</h2>
+    <ul>
+      <li *ngFor="let comment of comments" class="userProfile__CommentItem">
+        <p>{{ comment.comment }}</p>
+        <small>Posted on: {{ comment.commentTime | date : "short" }}</small>
+        <br />
+        <a href="./project/{{ comment.project!.id }}">Open project</a>
+      </li>
+    </ul>
+  </div>
 
-  <h2>Likes</h2>
-  <ul>
-    <li *ngFor="let like of likes">
-      <p>{{like.projects}}</p>
-    </li>
-  </ul>
+  <div class="userProfile__Likes">
+    <h2>Likes</h2>
+    <ul *ngIf="likes.length">
+      <li *ngFor="let like of likes" class="userProfile__LikeItem">
+        <p>{{ like.projects }}</p>
+      </li>
+    </ul>
 
+    <p *ngIf="!likes">No likes yet.</p>
+  </div>
 </div>

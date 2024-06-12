@@ -1,3 +1,4 @@
+import { Project } from './project.interface';
 import { UserData } from './user-data.interface';
 
 export interface Comment {
@@ -5,4 +6,5 @@ export interface Comment {
   comment: string;
   user: UserData;
   commentTime: string;
+  project?: Project;
 }

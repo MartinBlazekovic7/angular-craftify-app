@@ -22,13 +22,11 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'registration',
-    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/registration/registration.component').then(
         (m) => m.RegistrationComponent
@@ -36,7 +34,6 @@ export const routes: Routes = [
   },
   {
     path: 'favorites',
-    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/favorites/favorites.component').then(
         (m) => m.FavoritesComponent
@@ -44,7 +41,6 @@ export const routes: Routes = [
   },
   {
     path: 'settings',
-    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/settings/settings.component').then(
         (m) => m.SettingsComponent
@@ -52,7 +48,6 @@ export const routes: Routes = [
   },
   {
     path: 'settings',
-    canActivate: [!AuthGuard],
     loadComponent: () =>
       import('./pages/settings/settings.component').then(
         (m) => m.SettingsComponent
@@ -60,7 +55,6 @@ export const routes: Routes = [
   },
   {
     path: 'admin-dashboard',
-    //canActivate: [AdminGuard],
     loadComponent: () =>
       import('./pages/admin-dashboard/admin-dashboard.component').then(
         (m) => m.AdminDashboardComponent
