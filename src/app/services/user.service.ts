@@ -7,6 +7,7 @@ import { Comment } from '../models/comment.interface';
 import { LikeData } from '../models/like.interface';
 import { Project } from '../models/project.interface';
 import { UserProfile } from '../models/user-profile.interface';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,8 +18,8 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/users/all`);
   }
 
-  getUserProfile(id: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/users/${id}`);
+  getUserProfile(id: number): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${environment.apiUrl}/users/${id}`);
   }
 
   createProject(projectData: any): Observable<any> {
@@ -27,7 +28,7 @@ export class UserService {
 
   getUserComments(id: number) {
     return this.http.get<Comment[]>(
-      `${environment.apiUrl}/comments/byUserId/${id}`
+      `${environment.apiUrl}/users/comments/${id}`
     );
   }
 

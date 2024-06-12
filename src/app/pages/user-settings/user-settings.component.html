@@ -2,10 +2,83 @@
     <div>
         <label for="profileImage">Profile Image</label>
         <input type="file" id = "profileImage" formControlName ="profileImage">
+
+<div class="settingsPage__Container">
+    <div class="settingsPage__FormContainer">
+      <h2>USER SETTINGS</h2>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <input
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="Name"
+        />
+        <ul
+          class="form__Errors"
+          *ngIf="name && name.invalid && (name.dirty || name.touched)"
+        >
+          <li class="form__Error" *ngIf="name?.errors?.['required']">
+            Name is required.
+          </li>
+        </ul>
+        <input
+          type="text"
+          pInputText
+          formControlName="userName"
+          placeholder="Username"
+        />
+        <ul
+          class="form__Errors"
+          *ngIf="userName && userName.invalid && (userName.dirty || userName.touched)"
+        >
+          <li class="form__Error" *ngIf="userName?.errors?.['required']">
+            Username is required.
+          </li>
+          <li
+            class="form__Error"
+            *ngIf="userName?.errors?.['minlength'] || userName?.errors?.['maxlength']"
+          >
+            Username must be between 6 and 28 characters.
+          </li>
+        </ul>
+        <input
+          type="email"
+          pInputText
+          formControlName="email"
+          placeholder="Email"
+        />
+        <ul
+          class="form__Errors"
+          *ngIf="email && email.invalid && (email.dirty || email.touched)"
+        >
+          <li class="form__Error" *ngIf="email?.errors?.['required']">
+            Email is required.
+          </li>
+          <li
+            class="form__Error"
+            *ngIf="email?.errors?.['email']"
+          >
+            Please enter a valid email address.
+          </li>
+        </ul>
+
+        <button type="submit" label="Save" [disabled]="profileForm.invalid">SAVE</button>
+      </form>
+
     </div>
     <div>
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName = "name">
+    </div>
+</div>
+
+<form [formGroup]="profileForm" (ngSubmit) = "onSubmit()">
+    <div>
+        <label for="profileImage">Profile Image</label>
+        <input type="file" id = "profileImage" formControlName ="profileImage">
+    </div>
+    <div class="settingsPage__ImageContainer">
+      <img src="../../../assets/images/settings-page.jpg" alt="Settings Page Image" />
     </div>
     <div>
         <label for="userName">Username</label>
@@ -21,3 +94,5 @@
     </div>
     <button type="submit" [disabled]="profileForm.invalid">Save</button>
 </form>
+</div>
+
