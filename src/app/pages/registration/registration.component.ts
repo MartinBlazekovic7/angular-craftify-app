@@ -1,4 +1,4 @@
-import { userService } from './../../services/user.service';
+import { UserService } from './../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -26,7 +26,7 @@ export class RegistrationComponent {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private userService: userService
+    private userService: UserService
   ) {}
 
   onSubmit() {

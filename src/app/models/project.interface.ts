@@ -17,3 +17,13 @@ export interface Project {
   userLikes: UserData[];
   projectFollowers: UserData[];
 }
+
+export interface ProjectDTO {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  categoryId: number;
+  complexityId: number;
+  mediaList: Media[];
+}

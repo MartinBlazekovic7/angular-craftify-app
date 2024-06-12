@@ -1,1 +1,595 @@
-<p>admin-dashboard works!</p>
+<div class="contentWrapper">
+  <div class="adminDashboard__Container">
+    <div class="adminDashboard__Items">
+      <div
+        class="adminDashboard__Item"
+        [ngClass]="selectedItem === items.PROJECTS ? 'item-selected' : ''"
+      >
+        <button (click)="getItems(items.PROJECTS)">PROJECTS</button>
+      </div>
+      <div
+        class="adminDashboard__Item"
+        [ngClass]="selectedItem === items.TUTORIALS ? 'item-selected' : ''"
+      >
+        <button (click)="getItems(items.TUTORIALS)">TUTORIALS</button>
+      </div>
+      <div
+        class="adminDashboard__Item"
+        [ngClass]="selectedItem === items.NEWS ? 'item-selected' : ''"
+      >
+        <button (click)="getItems(items.NEWS)">NEWS</button>
+      </div>
+      <div
+        class="adminDashboard__Item"
+        [ngClass]="selectedItem === items.CATEGORIES ? 'item-selected' : ''"
+      >
+        <button (click)="getItems(items.CATEGORIES)">CATEGORIES</button>
+      </div>
+      <div
+        class="adminDashboard__Item"
+        [ngClass]="selectedItem === items.USERS ? 'item-selected' : ''"
+      >
+        <button (click)="getItems(items.USERS)">USERS</button>
+      </div>
+    </div>
+    <div class="adminDashboard__SelectedItems">
+      <h2>{{ selectedItem.toUpperCase() || "Select item." }}</h2>
+      <div *ngIf="selectedItem === items.PROJECTS && projects.length">
+        <p-table [value]="projects">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>More</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-project>
+            <tr>
+              <td>{{ project.id }}</td>
+              <td>{{ project.title }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-success"
+                  (click)="openProjectDetails(project)"
+                >
+                  More
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-warning"
+                  (click)="openEditProject(project)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-danger"
+                  (click)="deleteProject(project.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="selectedItem === items.TUTORIALS && tutorials.length">
+        <p-table [value]="tutorials">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>More</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-tutorial>
+            <tr>
+              <td>{{ tutorial.id }}</td>
+              <td>{{ tutorial.title }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-success"
+                  (click)="openTutorialDetails(tutorial)"
+                >
+                  More
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-warning"
+                  (click)="openEditTutorial(tutorial)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-danger"
+                  (click)="deleteTutorial(tutorial.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="selectedItem === items.NEWS && news.length">
+        <p-table [value]="news">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>More</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-news>
+            <tr>
+              <td>{{ news.id }}</td>
+              <td>{{ news.title }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-success"
+                  (click)="openNewsDetails(news)"
+                >
+                  More
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-warning"
+                  (click)="openEditNews(news)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-danger"
+                  (click)="deleteNews(news.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="selectedItem === items.CATEGORIES && categories.length">
+        <p-table [value]="categories">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>More</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-category>
+            <tr>
+              <td>{{ category.id }}</td>
+              <td>{{ category.name }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-success"
+                  (click)="openCategoryDetails(category)"
+                >
+                  More
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-warning"
+                  (click)="openEditCategory(category)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-danger"
+                  (click)="deleteCategory(category.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div *ngIf="selectedItem === items.USERS && users.length">
+        <p-table [value]="users">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>More</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user>
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-success"
+                  (click)="openUserDetails(user)"
+                >
+                  More
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-warning"
+                  (click)="openEditUser(user)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  class="p-button-danger"
+                  (click)="deleteUser(user.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+
+  <p-dialog
+    header="Project details"
+    [modal]="true"
+    [(visible)]="toggleModalProjectView"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <span class="p-text-secondary block mb-5">{{
+      selectedProject?.title
+    }}</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      {{ selectedProject?.content }}
+    </div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <span>{{ selectedProject?.category?.name }}</span>
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalProjectView = false"
+      />
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="Edit project"
+    [modal]="true"
+    [(visible)]="toggleModalProjectEdit"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <form [formGroup]="projectEditForm" (ngSubmit)="onEditProject()">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Title"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="content">Content</label>
+        <input
+          type="text"
+          id="content"
+          formControlName="content"
+          placeholder="Content"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button type="submit" label="Save" severity="success" />
+        <p-button
+          label="Close"
+          severity="secondary"
+          (click)="toggleModalProjectEdit = false"
+        />
+      </div>
+    </form>
+    <span class="p-text-secondary block mb-5">{{
+      selectedProject?.title
+    }}</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      {{ selectedProject?.content }}
+    </div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <span>{{ selectedProject?.category?.name }}</span>
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalProjectView = false"
+      />
+    </div>
+  </p-dialog>
+
+  <p-dialog
+    header="Tutorial details"
+    [modal]="true"
+    [(visible)]="toggleModalTutorialView"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <span class="p-text-secondary block mb-5">{{
+      selectedTutorial?.title
+    }}</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      {{ selectedTutorial?.content }}
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalTutorialView = false"
+      />
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="Edit tutorial"
+    [modal]="true"
+    [(visible)]="toggleModalTutorialEdit"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <form [formGroup]="tutorialEditForm" (ngSubmit)="onEditTutorial()">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Title"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="content">Content</label>
+        <input
+          type="text"
+          id="content"
+          formControlName="content"
+          placeholder="Content"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button type="submit" label="Save" severity="success"></p-button>
+        <p-button
+          label="Close"
+          severity="secondary"
+          (click)="toggleModalTutorialEdit = false"
+        ></p-button>
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-dialog
+    header="News details"
+    [modal]="true"
+    [(visible)]="toggleModalNewsView"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <span class="p-text-secondary block mb-5">{{ selectedNews?.title }}</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      {{ selectedNews?.content }}
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalNewsView = false"
+      />
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="Edit news"
+    [modal]="true"
+    [(visible)]="toggleModalNewsEdit"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <form [formGroup]="newsEditForm" (ngSubmit)="onEditNews()">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Title"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="content">Content</label>
+        <input
+          type="text"
+          id="content"
+          formControlName="content"
+          placeholder="Content"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button type="submit" label="Save" severity="success" />
+        <p-button
+          label="Close"
+          severity="secondary"
+          (click)="toggleModalNewsEdit = false"
+        />
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-dialog
+    header="Category details"
+    [modal]="true"
+    [(visible)]="toggleModalCategoryView"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <span class="p-text-secondary block mb-5">{{
+      selectedCategory?.name
+    }}</span>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalCategoryView = false"
+      />
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="Edit category"
+    [modal]="true"
+    [(visible)]="toggleModalCategoryEdit"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <form [formGroup]="categoryEditForm" (ngSubmit)="onEditCategory()">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="Name"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button type="submit" label="Save" severity="success" />
+        <p-button
+          label="Close"
+          severity="secondary"
+          (click)="toggleModalCategoryEdit = false"
+        />
+      </div>
+    </form>
+  </p-dialog>
+
+  <p-dialog
+    header="User details"
+    [modal]="true"
+    [(visible)]="toggleModalUserView"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <span class="p-text-secondary block mb-5">{{ selectedUser?.name }}</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      {{ selectedUser?.email }}
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Close"
+        severity="secondary"
+        (click)="toggleModalUserView = false"
+      />
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="Edit user"
+    [modal]="true"
+    [(visible)]="toggleModalUserEdit"
+    [style]="{ width: '50rem', height: '50rem' }"
+    class="flex align-items-center"
+  >
+    <form [formGroup]="userEditForm" (ngSubmit)="onEditUser()">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="Name"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="Email"
+          id="email"
+          formControlName="email"
+        />
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button type="submit" label="Save" severity="success" />
+        <p-button
+          label="Close"
+          severity="secondary"
+          (click)="toggleModalUserEdit = false"
+        />
+      </div>
+    </form>
+  </p-dialog>
+</div>

@@ -70,6 +70,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private logoutUser(): Observable<HttpEvent<any>> {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
     return throwError(() => new Error('Session expired, user logged out.'));
   }

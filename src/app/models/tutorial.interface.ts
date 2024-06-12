@@ -13,3 +13,11 @@ export interface Tutorial {
   complexity: Complexity;
   mediaList: Media[];
 }
+
+export interface TutorialDTO {
+  id: number;
+  title: string;
+  content: string;
+  categoryId: number;
+  complexityId: number;
+}

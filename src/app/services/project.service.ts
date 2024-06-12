@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
@@ -26,7 +27,18 @@ export class ProjectService {
     );
   }
 
-  submitProject(projectData: any): Observable<any>{
+  submitProject(projectData: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/project`, projectData);
+  }
+
+  editProject(projectData: any): Observable<any> {
+    return this.http.put(
+      `${environment.apiUrl}/project/${projectData.id}`,
+      projectData
+    );
+  }
+
+  deleteProject(id: number) {
+    return this.http.delete(`${environment.apiUrl}/project/${id}`);
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -9,8 +10,12 @@ import { UserProfile } from '../models/user-profile.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class userService {
+export class UserService {
   constructor(private http: HttpClient) {}
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/users/all`);
+  }
 
   getUserProfile(id: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}/users/${id}`);
@@ -48,5 +53,9 @@ export class userService {
 
   createUser(user: UserProfile) {
     return this.http.post(`${environment.apiUrl}/users`, user);
+  }
+
+  deleteUser(userId: number) {
+    return this.http.delete(`${environment.apiUrl}/users/${userId}`);
   }
 }
