@@ -51,6 +51,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'settings',
+    canActivate: [!AuthGuard],
+    loadComponent: () =>
+      import('./pages/settings/settings.component').then(
+        (m) => m.SettingsComponent
+      ),
+  },
+  {
     path: 'admin-dashboard',
     canActivate: [AdminGuard],
     loadComponent: () =>
@@ -59,15 +67,14 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'profile/:id',
+    path: 'profile',
     loadComponent: () =>
       import('./pages/profile/profile.component').then(
         (m) => m.ProfileComponent
       ),
   },
   {
-    path: 'profile/edit/:id',
-    canActivate: [!AuthGuard],
+    path: 'user-settings',
     loadComponent: () =>
       import('./pages/user-settings/user-settings.component').then(
         (m) => m.UserSettingsComponent
@@ -88,8 +95,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'create-project',
-    canActivate: [!AuthGuard],
+    path: 'project-form',
     loadComponent: () =>
       import('./pages/project-form/project-form.component').then(
         (m) => m.ProjectFormComponent

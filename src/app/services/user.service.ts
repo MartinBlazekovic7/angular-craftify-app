@@ -6,23 +6,29 @@ import { Comment } from '../models/comment.interface';
 import { LikeData } from '../models/like.interface';
 import { Project } from '../models/project.interface';
 import { UserProfile } from '../models/user-profile.interface';
+import { AuthenticationService } from './authentication.service';
+
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class userService {
-  constructor(private http: HttpClient) {}
 
-  getUserProfile(id: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/users/${id}`);
+  constructor(private http: HttpClient, auth: AuthenticationService) {}
+
+
+  getUserProfile(id: number): Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${environment.apiUrl}/users/${id}`);
   }
+
 
   createProject(projectData: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/project`, projectData);
   }
 
   getUserComments(id: number) {
-    return this.http.get<Comment[]>(
-      `${environment.apiUrl}/comments/byUserId/${id}`
+    return this.http.get<Comment[]>(`${environment.apiUrl}/users/comments/${id}`
     );
   }
 

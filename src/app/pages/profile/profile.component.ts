@@ -1,72 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { userService } from '../../services/user.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Comment } from '../../models/comment.interface';
+import { LikeData } from '../../models/like.interface';
 import { Project } from '../../models/project.interface';
+import { UserProfile } from '../../models/user-profile.interface';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,RouterModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
+
 export class ProfileComponent implements OnInit {
-  user: any;
+  user: UserProfile | undefined;
   projects: Project[] = [];
-  likes : any[] = [];
-  comments: any[] = [];
+  likes : LikeData[] = [];
+  comments: Comment[] = [];
   userId!: number;
   isOwnProfile: boolean = false;
   categoryId!: number;
   showCommentsLikes: any;
-
+  subscription?: Subscription
 
   constructor(
-    private route: ActivatedRoute,
     private userService: userService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ){}
 
-  ngOnInit(): void {
-      const userId = +this.route.snapshot.paramMap.get('id')!;
-      this.isOwnProfile = userId === this.userId;
 
-      this.userService.getUserProfile(userId).subscribe(data => {
-        this.user= data;
-        this.loadUserDetails(userId);
+  ngOnInit(): void {
+
+    const userJson = localStorage.getItem('user');
+    if(userJson){
+      const user: UserProfile = JSON.parse(userJson);
+      this.user = user;
+      this.userId = user.id;
+    }
+
+    this.loadUserComments();
+    this.loadUserLikes();
+    this.loadUserProjects();
+
+    }
+
+    loadUserComments():void{
+      this.subscription = this.userService.getUserComments(this.userId).subscribe({
+        next: (commnets: Comment[]) =>{
+          this.comments = commnets;
+          console.log(this.comments);
+        },
+        error: () =>{
+          this.comments
+        },
       });
     }
-      loadUserDetails(userId: number): void{
-      this.userService.getUserProjects(userId).subscribe(data =>{
-        this.projects = data;
-      });
 
-      this.userService.getUserComments(userId).subscribe(data =>{
-        this.comments = data;
+    loadUserLikes():void{
+      this.subscription = this.userService.getUserLikes(this.userId).subscribe({
+        next: (likes: LikeData[])=>{
+          this.likes = likes;
+          console.log(this.likes)
+        },
+        error: () => {
+          this.likes
+        },
       });
-      
-      this.userService.getUserLikes(userId).subscribe(data =>{
-        this.likes = data;
-      });
+    }
 
+    loadUserProjects():void{
+      this.subscription = this.userService.getUserProjects(this.userId).subscribe({
+        next: (projects: Project[])=>{
+          this.projects = projects;
+          console.log(this.projects);
+        },
+        error:() =>{
+          this.projects
+        }
+      })
     }
 
     navigateToCreateProject(): void{
       this.router.navigate(['/create-project']);
     }
 
-    removeCategory(categoryId:number, userId: number): void{
-      if( categoryId !== undefined && userId !== undefined){
-        this.userService.removeUserCategory(userId, categoryId).subscribe(() =>{
-          this.user.category = this.user.category.filter((cat: { id: number; }) => cat.id !== categoryId);
-        });
-      } else{
-        console.error('cannot remove category!');
-      }
-    }
-
-    toggleCommentsLikes(): void{
-      this.showCommentsLikes = !this.showCommentsLikes;
+    removeCategory(categoryId:number, userid: number): void{
+      this.userService.removeUserCategory(this.userId, categoryId).subscribe(response =>{
+        console.log('category removed', response);
+      })
     }
 
 }
