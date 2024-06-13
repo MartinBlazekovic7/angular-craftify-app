@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../services/authentication.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -15,6 +16,7 @@ import { AuthenticationService } from '../../services/authentication.service';
     SidebarModule,
     ButtonModule,
     OverlayPanelModule,
+    TranslateModule,
   ],
   templateUrl: './navigation-bar.component.html',
   styleUrl: './navigation-bar.component.scss',

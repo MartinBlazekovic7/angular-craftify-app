@@ -25,7 +25,7 @@
           [routerLink]="['']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >HOME</a
+          >{{ "navigationBar.home" | translate }}</a
         >
         <a
           (click)="sidebarVisible = false"
@@ -33,7 +33,7 @@
           [routerLink]="['tutorials']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >TUTORIALS</a
+          >{{ "navigationBar.tutorials" | translate }}</a
         >
         <a
           (click)="sidebarVisible = false"
@@ -41,7 +41,7 @@
           [routerLink]="['news']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >NEWS</a
+          >{{ "navigationBar.news" | translate }}</a
         >
       </div>
     </div>
@@ -71,21 +71,23 @@
         class="userOverlay__Item"
         (click)="op2.hide()"
         [routerLink]="['profile']"
-        >PROFILE</a
+        >{{ "navigationBar.profile" | translate }}</a
       >
       <a
         class="userOverlay__Item"
         (click)="op2.hide()"
         [routerLink]="['user-settings']"
-        >SETTINGS</a
+        >{{ "navigationBar.settings" | translate }}</a
       >
       <a
         class="userOverlay__Item"
         (click)="op2.hide()"
         [routerLink]="['favorites']"
-        >FAVORITES</a
+        >{{ "navigationBar.favorites" | translate }}</a
       >
-      <button class="userOverlay__Item" (click)="logout()">LOG OUT</button>
+      <button class="userOverlay__Item" (click)="logout()">
+        {{ "navigationBar.logOut" | translate }}
+      </button>
     </div>
   </div>
 </p-overlayPanel>

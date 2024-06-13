@@ -20,7 +20,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   imports: [ReactiveFormsModule, CommonModule, ToastModule, TranslateModule],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss',
-  providers: [MessageService],
+  providers: [MessageService, TranslateService],
 })
 export class UserSettingsComponent implements OnInit {
   userEditForm = this.fb.group({
@@ -104,6 +104,7 @@ export class UserSettingsComponent implements OnInit {
   changeLanguage(language: string) {
     this.translateService.use(language);
     this.selectedLanguage = language;
+    console.log('Language changed to: ', language);
   }
 
   get username() {
