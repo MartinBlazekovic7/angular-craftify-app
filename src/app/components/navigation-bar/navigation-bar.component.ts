@@ -35,15 +35,12 @@ export class NavigationBarComponent implements OnInit {
     this.authService.logout().subscribe({
       next: () => {
         console.log('Logged out successfully');
-        window.location.href = '/'; // Redirect to the home page
-        window.location.reload();   // Reload the page
+        window.location.href = '/';
       },
       error: (error) => {
         console.error('Error during logout', error);
-        window.location.href = '/'; // Redirect to the home page
-        window.location.reload();   // Reload the page
-      }
+        window.location.href = '/';
+      },
     });
-  }  
+  }
 }
-

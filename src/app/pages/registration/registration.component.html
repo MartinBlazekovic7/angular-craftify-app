@@ -76,13 +76,17 @@
       <ul
         class="form__Errors"
         *ngIf="
-          confirmPassword &&
-          confirmPassword.invalid &&
-          (confirmPassword.dirty || confirmPassword.touched)
+          (confirmPassword &&
+            confirmPassword.invalid &&
+            (confirmPassword.dirty || confirmPassword.touched)) ||
+          passwordsDoNotMatch
         "
       >
         <li class="form__Error" *ngIf="confirmPassword?.errors?.['required']">
           Confirm Password is required.
+        </li>
+        <li class="form__Error" *ngIf="passwordsDoNotMatch">
+          Passwords do not match.
         </li>
       </ul>
       <i>Already have an account? <a href="login">Login</a></i>
@@ -95,4 +99,19 @@
       alt="Login Page Image"
     />
   </div>
+</div>
+
+<div>
+  <p-dialog [modal]="true" [(visible)]="dialogToggle">
+    <ng-template pTemplate="headless">
+      <div class="successModal">
+        <p>{{ dialogMessage }}</p>
+        @if(successfulRegistration) {
+        <a href="/login">Go to Login</a>
+        } @else {
+        <button (click)="dialogToggle = false">Try Again</button>
+        }
+      </div>
+    </ng-template>
+  </p-dialog>
 </div>

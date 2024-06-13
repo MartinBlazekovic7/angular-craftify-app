@@ -7,11 +7,13 @@ import {
   UntypedFormBuilder,
 } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { UserDTO } from '../../models/tokens.interface';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [CommonModule, InputTextModule, ReactiveFormsModule, DialogModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
@@ -24,6 +26,12 @@ export class RegistrationComponent {
     confirmPassword: ['', [Validators.required]],
   });
 
+  passwordsDoNotMatch = false;
+
+  dialogToggle = false;
+  successfulRegistration = false;
+  dialogMessage = '';
+
   constructor(
     private fb: UntypedFormBuilder,
     private userService: UserService
@@ -35,13 +43,35 @@ export class RegistrationComponent {
       return;
     }
 
-    this.userService.createUser(this.registerForm.value).subscribe({
+    if (
+      this.registerForm.value.password !==
+      this.registerForm.value.confirmPassword
+    ) {
+      this.passwordsDoNotMatch = true;
+      return;
+    }
+
+    const userDTO: UserDTO = {
+      email: this.registerForm.value.email,
+      name: this.registerForm.value.name,
+      username: this.registerForm.value.username,
+      password: this.registerForm.value.password,
+      isAdmin: false,
+      isPrivate: false,
+      userPreferences: [],
+    };
+
+    this.userService.createUser(userDTO).subscribe({
       next: () => {
-        alert('User created successfully!');
+        this.dialogToggle = true;
+        this.successfulRegistration = true;
+        this.dialogMessage = 'Registration successful!';
         this.registerForm.reset();
       },
       error: () => {
-        alert('User creation failed. Please try again.');
+        this.dialogToggle = true;
+        this.successfulRegistration = false;
+        this.dialogMessage = 'Registration failed. Please try again.';
       },
     });
   }

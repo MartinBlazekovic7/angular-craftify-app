@@ -56,7 +56,7 @@ export class UserService {
     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
   }
 
-  createUser(user: UserProfile) {
+  createUser(user: UserDTO) {
     return this.http.post(`${environment.apiUrl}/users`, user);
   }
 
