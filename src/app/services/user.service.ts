@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { Comment } from '../models/comment.interface';
 import { Project } from '../models/project.interface';
 import { UserProfile } from '../models/user-profile.interface';
+import { UserDTO } from '../models/tokens.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +50,10 @@ export class UserService {
 
   updateUser(userId: number) {
     return this.http.put(`${environment.apiUrl}/users/${userId}`, userId);
+  }
+
+  editUser(user: UserDTO) {
+    return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
   }
 
   createUser(user: UserProfile) {

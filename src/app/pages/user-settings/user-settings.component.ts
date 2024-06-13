@@ -1,57 +1,92 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { Subscription } from 'rxjs';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
+import { UserProfile } from '../../models/user-profile.interface';
+import { UserDTO } from '../../models/tokens.interface';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ToastModule],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss',
+  providers: [MessageService],
 })
 export class UserSettingsComponent implements OnInit {
-  profileForm!: FormGroup;
+  userEditForm = this.fb.group({
+    username: [''],
+    email: [''],
+    name: [''],
+  });
+
+  user: UserProfile | undefined;
   userId!: number;
-  subscription?: Subscription;
-  name: any;
-  userName: any;
-  email: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: UntypedFormBuilder,
     private userService: UserService,
-    private authService: AuthenticationService,
-    private router: Router
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.profileForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      userName: [
-        '',
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(28),
-      ],
-      email: ['', Validators.required, Validators.email],
-    });
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user: UserProfile = JSON.parse(userJson);
+      this.userId = user.id!;
+
+      this.userService.getUserProfile(this.userId).subscribe({
+        next: (user: UserProfile) => {
+          this.user = user;
+          this.userEditForm.patchValue({
+            username: user.username,
+            email: user.email,
+            name: user.name,
+          });
+        },
+        error: () => {
+          this.user;
+        },
+      });
+    }
   }
 
   onSubmit() {
-    if (this.profileForm?.valid) {
-      console.log('Form submitted', this.profileForm.value);
-    } else {
-      console.log('Form is invalid');
+    if (this.userEditForm.valid) {
+      const userDTO: UserDTO = {
+        id: this.userId,
+        username: this.userEditForm.value.username,
+        email: this.userEditForm.value.email,
+        name: this.userEditForm.value.name,
+        password: 'newPassword123',
+        isAdmin: false,
+        isPrivate: false,
+        userPreferences: [],
+      };
+
+      this.userService.editUser(userDTO).subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Successfully updated user profile.',
+          });
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'danger',
+            summary: 'Error',
+            detail: 'Successfully updated user profile.',
+          });
+        },
+      });
     }
+  }
+
+  changeLanguage(language: string) {
+    console.log(`Language changed to ${language}`);
   }
 }

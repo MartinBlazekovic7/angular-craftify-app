@@ -5,8 +5,12 @@ export interface Tokens {
 }
 
 export interface UserDTO {
-  id: number;
-  name: string;
-  username: string;
-  admin: boolean;
+  id?: number;
+  name?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+  isAdmin?: boolean;
+  isPrivate?: boolean;
+  userPreferences?: number[];
 }
