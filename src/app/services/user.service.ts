@@ -70,17 +70,34 @@ export class UserService {
     );
   }
 
-  addRemoveFavorite(userId: number, projectId: number, addRemove: string) {
+  addFavorite(userId: number, projectId: number) {
     return this.http.post(
-      `${environment.apiUrl}/users/${userId}/${addRemove}/${projectId}`,
+      `${environment.apiUrl}/users/${userId}/addFavorite/${projectId}`,
       {}
     );
   }
 
-  addRemoveLike(userId: number, projectId: number, addRemove: string) {
-    return this.http.post(
-      `${environment.apiUrl}/users/${userId}/${addRemove}/${projectId}`,
+  removeFavorite(userId: number, projectId: number) {
+    return this.http.delete(
+      `${environment.apiUrl}/users/${userId}/removeFavorite/${projectId}`,
       {}
     );
+  }
+
+  addLike(userId: number, projectId: number) {
+    return this.http.post(
+      `${environment.apiUrl}/users/${userId}/like/${projectId}`,
+      {}
+    );
+  }
+
+  removeLike(userId: number, projectId: number) {
+    return this.http.delete(
+      `${environment.apiUrl}/users/${userId}/dislike/${projectId}`
+    );
+  }
+
+  removeComment(commentId: number) {
+    return this.http.delete(`${environment.apiUrl}/comments/${commentId}`);
   }
 }

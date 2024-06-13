@@ -5,12 +5,42 @@
       <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
         <label for="title">Title</label>
         <input id="title" formControlName="title" type="text" />
+        <ul
+          class="form__Errors"
+          *ngIf="title && title.invalid && (title.dirty || title.touched)"
+        >
+          <li class="form__Error" *ngIf="title?.errors?.['required']">
+            Title is required.
+          </li>
+        </ul>
 
         <label for="content">Content</label>
         <textarea id="content" formControlName="content"></textarea>
+        <ul
+          class="form__Errors"
+          *ngIf="
+            content && content.invalid && (content.dirty || content.touched)
+          "
+        >
+          <li class="form__Error" *ngIf="content?.errors?.['required']">
+            Content is required.
+          </li>
+        </ul>
 
         <label for="description">Description</label>
         <textarea id="description" formControlName="description"></textarea>
+        <ul
+          class="form__Errors"
+          *ngIf="
+            description &&
+            description.invalid &&
+            (description.dirty || description.touched)
+          "
+        >
+          <li class="form__Error" *ngIf="description?.errors?.['required']">
+            Description is required.
+          </li>
+        </ul>
 
         <label for="category">Category</label>
         <select id="category" formControlName="category">
@@ -18,6 +48,16 @@
             {{ category.name }}
           </option>
         </select>
+        <ul
+          class="form__Errors"
+          *ngIf="
+            category && category.invalid && (category.dirty || category.touched)
+          "
+        >
+          <li class="form__Error" *ngIf="category?.errors?.['required']">
+            Category is required.
+          </li>
+        </ul>
 
         <label for="complexity">Complexity</label>
         <select id="complexity" formControlName="complexity">
@@ -28,6 +68,18 @@
             {{ complexity.name }}
           </option>
         </select>
+        <ul
+          class="form__Errors"
+          *ngIf="
+            complexity &&
+            complexity.invalid &&
+            (complexity.dirty || complexity.touched)
+          "
+        >
+          <li class="form__Error" *ngIf="complexity?.errors?.['required']">
+            Complexity is required.
+          </li>
+        </ul>
 
         <button type="submit">Submit</button>
       </form>
@@ -38,3 +90,4 @@
     </div>
   </div>
 </div>
+<p-toast />

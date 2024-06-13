@@ -8,13 +8,16 @@ import { Project } from '../../models/project.interface';
 import { UserProfile } from '../../models/user-profile.interface';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ToastModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
+  providers: [MessageService],
 })
 export class ProfileComponent implements OnInit {
   user: UserProfile | undefined;
@@ -30,7 +33,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -104,5 +108,47 @@ export class ProfileComponent implements OnInit {
       .subscribe((response) => {
         console.log('category removed', response);
       });
+  }
+
+  removeLike(projectId: number): void {
+    this.userService.removeLike(this.userId, projectId).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully removed like.',
+        });
+        this.loadUserLikes();
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Failed to remove like.',
+        });
+        console.log('error');
+      },
+    });
+  }
+
+  removeComment(commentId: number): void {
+    this.userService.removeComment(commentId).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully removed comment.',
+        });
+        this.loadUserComments();
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Failed to remove comment.',
+        });
+        console.log('error');
+      },
+    });
   }
 }

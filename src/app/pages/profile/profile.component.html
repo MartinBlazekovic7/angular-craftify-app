@@ -9,25 +9,30 @@
   <div class="userProfile__Projects">
     <h2>Projects</h2>
     <a href="project-form" class="main-button">CREATE PROJECT</a>
-    <ul>
+    <ul *ngIf="projects.length">
       <li *ngFor="let project of projects" class="userProfile__ProjectItem">
         <h3>{{ project.title }}</h3>
         <p>{{ project.content }}</p>
         <a href="./project/{{ project.id }}">Open</a>
       </li>
     </ul>
+
+    <p *ngIf="!projects.length">No comments yet.</p>
   </div>
 
   <div class="userProfile__Comments">
     <h2>Comments</h2>
-    <ul>
+    <ul *ngIf="comments.length">
       <li *ngFor="let comment of comments" class="userProfile__CommentItem">
         <p>{{ comment.comment }}</p>
         <small>Posted on: {{ comment.commentTime | date : "short" }}</small>
         <br />
         <a href="./project/{{ comment.project!.id }}">Open project</a>
+        <button (click)="removeComment(comment.id!)">Delete comment</button>
       </li>
     </ul>
+
+    <p *ngIf="!comments.length">No comments yet.</p>
   </div>
 
   <div class="userProfile__Likes">
@@ -36,9 +41,11 @@
       <li *ngFor="let like of likes" class="userProfile__LikeItem">
         <p>{{ like.title }}</p>
         <a href="./project/{{ like.id }}">Open project</a>
+        <button (click)="removeLike(like.id)">Dislike</button>
       </li>
     </ul>
 
-    <p *ngIf="!likes">No likes yet.</p>
+    <p *ngIf="!likes.length">No likes yet.</p>
   </div>
 </div>
+<p-toast />

@@ -57,6 +57,62 @@
       }
     }
   }
+
+  &__Dialog {
+    &-header {
+      font-family: $heading-font-family;
+      font-size: 2rem;
+      color: $black;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    &-content {
+      padding: 20px;
+
+      .mb-3,
+      .mb-5 {
+        margin-bottom: 1rem;
+
+        &.mb-5 {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .flex {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &.justify-content-end {
+          justify-content: flex-end;
+        }
+      }
+
+      label {
+        font-size: 1rem;
+        color: $black;
+        margin-right: 1rem;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        max-width: 500px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-family: inherit;
+      }
+      button {
+        padding: 12px;
+        margin-right: 12px;
+      }
+    }
+  }
 }
 
 .item-selected {

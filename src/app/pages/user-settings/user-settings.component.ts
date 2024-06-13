@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserDTO } from '../../models/tokens.interface';
@@ -18,9 +22,9 @@ import { MessageService } from 'primeng/api';
 })
 export class UserSettingsComponent implements OnInit {
   userEditForm = this.fb.group({
-    username: [''],
-    email: [''],
-    name: [''],
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    name: ['', Validators.required],
   });
 
   user: UserProfile | undefined;
@@ -55,38 +59,53 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.userEditForm.valid) {
-      const userDTO: UserDTO = {
-        id: this.userId,
-        username: this.userEditForm.value.username,
-        email: this.userEditForm.value.email,
-        name: this.userEditForm.value.name,
-        password: 'newPassword123',
-        isAdmin: false,
-        isPrivate: false,
-        userPreferences: [],
-      };
-
-      this.userService.editUser(userDTO).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Successfully updated user profile.',
-          });
-        },
-        error: () => {
-          this.messageService.add({
-            severity: 'danger',
-            summary: 'Error',
-            detail: 'Successfully updated user profile.',
-          });
-        },
-      });
+    if (!this.userEditForm.valid) {
+      this.userEditForm.markAllAsTouched();
+      return;
     }
+
+    const userDTO: UserDTO = {
+      id: this.userId,
+      username: this.userEditForm.value.username,
+      email: this.userEditForm.value.email,
+      name: this.userEditForm.value.name,
+      password: 'newPassword123',
+      isAdmin: false,
+      isPrivate: false,
+      userPreferences: [],
+    };
+
+    this.userService.editUser(userDTO).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully updated user profile.',
+        });
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Error updating user profile. Please try again.',
+        });
+      },
+    });
   }
 
   changeLanguage(language: string) {
     console.log(`Language changed to ${language}`);
+  }
+
+  get username() {
+    return this.userEditForm.get('username');
+  }
+
+  get email() {
+    return this.userEditForm.get('email');
+  }
+
+  get name() {
+    return this.userEditForm.get('name');
   }
 }

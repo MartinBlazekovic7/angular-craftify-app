@@ -285,9 +285,10 @@
   <p-dialog
     header="Project details"
     [modal]="true"
+    pTemplate="headless"
     [(visible)]="toggleModalProjectView"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <span class="p-text-secondary block mb-5">{{
       selectedProject?.title
@@ -302,16 +303,18 @@
       <p-button
         label="Close"
         severity="secondary"
+        class="secondary"
         (click)="toggleModalProjectView = false"
-      />
+      ></p-button>
     </div>
   </p-dialog>
+
   <p-dialog
     header="Edit project"
     [modal]="true"
     [(visible)]="toggleModalProjectEdit"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <form [formGroup]="projectEditForm" (ngSubmit)="onEditProject()">
       <div class="flex align-items-center gap-3 mb-3">
@@ -321,8 +324,6 @@
           id="title"
           formControlName="title"
           placeholder="Title"
-          id="title"
-          formControlName="title"
         />
       </div>
       <div class="flex align-items-center gap-3 mb-3">
@@ -332,35 +333,23 @@
           id="content"
           formControlName="content"
           placeholder="Content"
-          id="title"
-          formControlName="title"
         />
       </div>
       <div class="flex justify-content-end gap-2">
-        <p-button type="submit" label="Save" severity="success" />
+        <p-button
+          type="submit"
+          label="Save"
+          class="primary"
+          severity="success"
+        ></p-button>
         <p-button
           label="Close"
+          class="secondary"
           severity="secondary"
           (click)="toggleModalProjectEdit = false"
-        />
+        ></p-button>
       </div>
     </form>
-    <span class="p-text-secondary block mb-5">{{
-      selectedProject?.title
-    }}</span>
-    <div class="flex align-items-center gap-3 mb-3">
-      {{ selectedProject?.content }}
-    </div>
-    <div class="flex align-items-center gap-3 mb-5">
-      <span>{{ selectedProject?.category?.name }}</span>
-    </div>
-    <div class="flex justify-content-end gap-2">
-      <p-button
-        label="Close"
-        severity="secondary"
-        (click)="toggleModalProjectView = false"
-      />
-    </div>
   </p-dialog>
 
   <p-dialog
@@ -368,7 +357,7 @@
     [modal]="true"
     [(visible)]="toggleModalTutorialView"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <span class="p-text-secondary block mb-5">{{
       selectedTutorial?.title
@@ -389,7 +378,7 @@
     [modal]="true"
     [(visible)]="toggleModalTutorialEdit"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <form [formGroup]="tutorialEditForm" (ngSubmit)="onEditTutorial()">
       <div class="flex align-items-center gap-3 mb-3">
@@ -430,7 +419,7 @@
     [modal]="true"
     [(visible)]="toggleModalNewsView"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <span class="p-text-secondary block mb-5">{{ selectedNews?.title }}</span>
     <div class="flex align-items-center gap-3 mb-3">
@@ -449,7 +438,7 @@
     [modal]="true"
     [(visible)]="toggleModalNewsEdit"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <form [formGroup]="newsEditForm" (ngSubmit)="onEditNews()">
       <div class="flex align-items-center gap-3 mb-3">
@@ -490,7 +479,7 @@
     [modal]="true"
     [(visible)]="toggleModalCategoryView"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <span class="p-text-secondary block mb-5">{{
       selectedCategory?.name
@@ -508,7 +497,7 @@
     [modal]="true"
     [(visible)]="toggleModalCategoryEdit"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <form [formGroup]="categoryEditForm" (ngSubmit)="onEditCategory()">
       <div class="flex align-items-center gap-3 mb-3">
@@ -538,7 +527,7 @@
     [modal]="true"
     [(visible)]="toggleModalUserView"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <span class="p-text-secondary block mb-5">{{ selectedUser?.name }}</span>
     <div class="flex align-items-center gap-3 mb-3">
@@ -557,7 +546,7 @@
     [modal]="true"
     [(visible)]="toggleModalUserEdit"
     [style]="{ width: '50rem', height: '50rem' }"
-    class="flex align-items-center"
+    class="adminDashboard__Dialog-content"
   >
     <form [formGroup]="userEditForm" (ngSubmit)="onEditUser()">
       <div class="flex align-items-center gap-3 mb-3">

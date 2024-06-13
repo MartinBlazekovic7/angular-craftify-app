@@ -43,6 +43,22 @@
         border-radius: 5px;
       }
     }
+
+    button {
+      padding: 10px;
+      background-color: $brown-primary;
+      color: white;
+      margin-left: 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: none;
+      float: right;
+
+      &:hover {
+        background-color: darken($brown-primary, 10%);
+      }
+    }
   }
 
   &__ProjectItem {

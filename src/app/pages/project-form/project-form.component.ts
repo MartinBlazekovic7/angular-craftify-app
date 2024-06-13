@@ -13,18 +13,19 @@ import { Complexity } from '../../models/complexity.interface';
 import { ProjectForm } from '../../models/project.interface';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserService } from '../../services/user.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-project-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, ToastModule],
   templateUrl: './project-form.component.html',
   styleUrl: './project-form.component.scss',
+  providers: [MessageService],
 })
 export class ProjectFormComponent implements OnInit {
-  title = '';
   projectForm!: FormGroup;
-  isSubmit = true;
   submitMessage = '';
   categoryTags: Category[] = [
     { id: 1, name: 'Home Decor' },
@@ -52,7 +53,8 @@ export class ProjectFormComponent implements OnInit {
   constructor(
     private projectBuilder: FormBuilder,
     private projectService: ProjectService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -81,26 +83,60 @@ export class ProjectFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.projectForm.valid) {
-      const project: ProjectForm = {
-        title: this.projectForm.value.title,
-        description: this.projectForm.value.description,
-        content: this.projectForm.value.content,
-        categoryId: this.projectForm.value.category,
-        complexityId: this.projectForm.value.complexity,
-        userId: this.userId,
-        mediaList: [],
-        commentIdList: [],
-        userLikesIdList: [],
-        favoriteProjectUserIdList: [],
-        projectFollowersIdList: [],
-      };
-
-      console.log(project);
-
-      this.projectService.submitProject(project).subscribe((response) => {
-        console.log(response);
-      });
+    if (!this.projectForm.valid) {
+      this.projectForm.markAllAsTouched();
+      return;
     }
+    const project: ProjectForm = {
+      title: this.projectForm.value.title,
+      description: this.projectForm.value.description,
+      content: this.projectForm.value.content,
+      categoryId: this.projectForm.value.category,
+      complexityId: this.projectForm.value.complexity,
+      userId: this.userId,
+      mediaList: [],
+      commentIdList: [],
+      userLikesIdList: [],
+      favoriteProjectUserIdList: [],
+      projectFollowersIdList: [],
+    };
+
+    this.projectService.submitProject(project).subscribe({
+      next: () => {
+        this.projectForm.reset();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully created project.',
+        });
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Error creating project. Please try again.',
+        });
+      },
+    });
+  }
+
+  get title() {
+    return this.projectForm.get('title');
+  }
+
+  get description() {
+    return this.projectForm.get('description');
+  }
+
+  get content() {
+    return this.projectForm.get('content');
+  }
+
+  get category() {
+    return this.projectForm.get('category');
+  }
+
+  get complexity() {
+    return this.projectForm.get('complexity');
   }
 }

@@ -15,6 +15,7 @@
       <div class="favoritesList__ItemCategory">
         <span>Category: {{ project.category.name }}</span>
       </div>
+      <button (click)="removeFavorite(project.id)">Remove</button>
     </li>
   </ul>
 </div>
@@ -23,3 +24,5 @@
   <p>You have no favorite projects yet.</p>
   <a href="/" class="main-button">Discover</a>
 </div>
+
+<p-toast />

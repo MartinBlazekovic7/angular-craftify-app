@@ -62,7 +62,7 @@
       <p>{{ comment.comment }}</p>
     </div>
     }
-    <div *ngIf="isUserLoggedIn">
+    <div *ngIf="isUserLoggedIn" class="comments__AddComment">
       <textarea
         [(ngModel)]="newComment"
         placeholder="Write a comment..."

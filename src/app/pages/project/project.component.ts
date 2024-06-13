@@ -35,6 +35,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   newComment: string = '';
 
+  userId: number = 0;
+
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
@@ -100,13 +102,14 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   addRemoveFavorite(): void {
-    this.userService
-      .addRemoveFavorite(
-        this.projectId!,
-        this.projectId!,
-        this.inFavorites ? 'removeFavorite' : 'addFavorite'
-      )
-      .subscribe({
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user: UserProfile = JSON.parse(userJson);
+      this.userId = user.id!;
+    }
+
+    if (this.inFavorites) {
+      this.userService.removeFavorite(this.userId!, this.projectId!).subscribe({
         next: () => {
           this.inFavorites = !this.inFavorites;
         },
@@ -114,6 +117,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
           console.log('error');
         },
       });
+    } else {
+      this.userService.addFavorite(this.userId!, this.projectId!).subscribe({
+        next: () => {
+          this.inFavorites = !this.inFavorites;
+        },
+        error: () => {
+          console.log('error');
+        },
+      });
+    }
   }
 
   addRemoveLike(): void {
@@ -124,13 +137,20 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
     const user: UserProfile = JSON.parse(userJson);
 
-    this.userService
-      .addRemoveLike(
-        this.projectId!,
-        this.projectId!,
-        this.liked ? 'dislike' : 'like'
-      )
-      .subscribe({
+    if (this.liked) {
+      this.userService.removeLike(user.id!, this.projectId!).subscribe({
+        next: () => {
+          this.liked = !this.liked;
+          this.project!.userLikes = this.project!.userLikes.filter(
+            (user) => user.id !== user.id
+          );
+        },
+        error: () => {
+          console.log('error');
+        },
+      });
+    } else {
+      this.userService.addLike(user.id!, this.projectId!).subscribe({
         next: () => {
           this.liked = !this.liked;
           this.project!.userLikes.push(user);
@@ -139,6 +159,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
           console.log('error');
         },
       });
+    }
   }
 
   addComment(): void {
