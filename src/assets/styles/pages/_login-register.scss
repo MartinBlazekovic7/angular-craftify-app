@@ -1,0 +1,137 @@
+.loginPage,
+.registerPage {
+  &__Container {
+    width: 100%;
+    height: calc(100vh - 80px);
+    @include display-flex(row, space-between, center);
+  }
+
+  &__FormContainer {
+    position: relative;
+    @include display-flex(column, center, center);
+    width: 40%;
+    height: 100%;
+
+    h2 {
+      font-family: $heading-font-family;
+      color: $black;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+
+      input {
+        margin-top: 20px;
+        @include main-input;
+      }
+
+      i {
+        margin-bottom: 16px;
+        text-align: center;
+        margin-top: 20px;
+
+        a {
+          color: $brown-primary;
+          text-decoration: none;
+        }
+      }
+
+      button {
+        @include main-button;
+
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__ImageContainer {
+    width: 60%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__BackButton {
+    position: absolute;
+    color: $black;
+    top: 0;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+
+    a,
+    i {
+      font-size: 16px;
+    }
+
+    a {
+      color: $black;
+      text-decoration: none;
+      padding-left: 8px;
+      padding-top: 2px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.registerPage {
+  &__Container {
+    @include display-flex(row-reverse, space-between, center);
+  }
+}
+
+.successModal {
+  width: 100%;
+  @include display-flex(column, center, center);
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  a,
+  button {
+    background-color: $brown-primary;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+
+    &:hover {
+      background-color: darken($brown-primary, 10%);
+    }
+  }
+}
+
+.form__Errors {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.form__Error {
+  display: block;
+  color: red;
+  font-size: 14px;
+  line-height: 1.43;
+
+  & + .form__Error {
+    margin-top: 5px;
+  }
+}

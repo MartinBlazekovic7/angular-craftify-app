@@ -1,0 +1,69 @@
+<div class="loginPage__Container">
+  <div class="loginPage__FormContainer">
+    <div class="loginPage__BackButton">
+      <i class="pi pi-arrow-left"></i>
+      <a href="">Back</a>
+    </div>
+    <h2>LOGIN</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Email"
+        autocomplete="email"
+      />
+      <ul
+        class="form__Errors"
+        *ngIf="email && email.invalid && (email.dirty || email.touched)"
+      >
+        <li class="form__Error" *ngIf="email?.errors?.['required']">
+          Email is required.
+        </li>
+        <li
+          class="form__Error"
+          *ngIf="email?.errors?.['email'] || email?.errors?.['pattern']"
+        >
+          Please enter a valid email address.
+        </li>
+      </ul>
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        placeholder="Password"
+        autocomplete="current-password"
+      />
+      <ul
+        class="form__Errors"
+        *ngIf="
+          password && password.invalid && (password.dirty || password.touched)
+        "
+      >
+        <li class="form__Error" *ngIf="password?.errors?.['required']">
+          Password is required.
+        </li>
+      </ul>
+      <i>Don't have an account? <a href="registration">Register</a></i>
+      <button type="submit" label="Login">SUBMIT</button>
+    </form>
+  </div>
+  <div class="loginPage__ImageContainer">
+    <img src="../../../assets/images/login-page.jpg" alt="Login Page Image" />
+  </div>
+</div>
+
+<div>
+  <p-dialog [modal]="true" [(visible)]="dialogToggle">
+    <ng-template pTemplate="headless">
+      <div class="successModal">
+        <p>{{ dialogMessage }}</p>
+        @if(successfulLogin) {
+        <a href="/">Continue</a>
+        } @else {
+        <button (click)="dialogToggle = false">Try Again</button>
+        }
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

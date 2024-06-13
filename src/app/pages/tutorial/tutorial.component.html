@@ -1,0 +1,12 @@
+@if (tutorial) {
+<div class="tutorialDetailPage__Wrapper contentWrapper">
+  <div class="tutorialDetailPage__Content">
+    <div class="tutorialDetailPage__Header">
+      <i>{{ tutorial.user.username }}</i>
+      <h1>{{ tutorial.title }}</h1>
+      <img src="{{ tutorial.mediaList[0].media }}" alt="Tutorial image" />
+    </div>
+    <p>{{ tutorial.content }}</p>
+  </div>
+</div>
+}

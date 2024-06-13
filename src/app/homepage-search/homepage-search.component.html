@@ -1,0 +1,39 @@
+<div class="projectSearch__Toolbar">
+  <div class="projectSearch__ToolbarSearch">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="searchTerm"
+      placeholder="Search keywords"
+    />
+  </div>
+
+  <button (click)="searchProjects()">SEARCH</button>
+</div>
+
+<div class="contentWrapper projectSearch__ResultsContainer">
+  @if(projects && searchedProjects && projects.length > 0) {
+  <div class="projectSearch__List">
+    @for (item of projects; track item) {
+    <div class="projectSearch__Item">
+      <div class="projectSearch__ItemContent">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+        <a href="project/{{ item.id }}">Read more</a>
+      </div>
+    </div>
+    <hr />
+    }
+  </div>
+  } @else {
+  <div class="projectSearch__ListEmpty" *ngIf="searchedProjects">
+    <p>No projects found</p>
+  </div>
+  <div class="projectSearch__ListEmpty" *ngIf="!searchedProjects">
+    <p>Enter search term</p>
+  </div>
+  }
+  <button class="clearButton" *ngIf="searchedProjects" (click)="clearSearch()">
+    Clear
+  </button>
+</div>
