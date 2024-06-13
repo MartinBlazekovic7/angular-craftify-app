@@ -3,6 +3,7 @@ import { Comment } from './comment.interface';
 import { Complexity } from './complexity.interface';
 import { Media } from './media.interface';
 import { UserData } from './user-data.interface';
+import { UserProfile } from './user-profile.interface';
 
 export interface Project {
   id: number;
@@ -14,7 +15,7 @@ export interface Project {
   complexity: Complexity;
   mediaList: Media[];
   comments: Comment[];
-  userLikes: UserData[];
+  userLikes: UserProfile[];
   projectFollowers: UserData[];
 }
 

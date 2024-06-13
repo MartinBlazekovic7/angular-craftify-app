@@ -4,7 +4,6 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Comment } from '../../models/comment.interface';
-import { LikeData } from '../../models/like.interface';
 import { Project } from '../../models/project.interface';
 import { UserProfile } from '../../models/user-profile.interface';
 import { CommonModule } from '@angular/common';
@@ -20,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class ProfileComponent implements OnInit {
   user: UserProfile | undefined;
   projects: Project[] = [];
-  likes: LikeData[] = [];
+  likes: Project[] = [];
   comments: Comment[] = [];
   userId!: number;
   isOwnProfile: boolean = false;
@@ -71,7 +70,7 @@ export class ProfileComponent implements OnInit {
 
   loadUserLikes(): void {
     this.subscription = this.userService.getUserLikes(this.userId).subscribe({
-      next: (likes: LikeData[]) => {
+      next: (likes: Project[]) => {
         this.likes = likes;
         console.log(this.likes);
       },

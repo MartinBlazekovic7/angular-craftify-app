@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Comment } from '../models/comment.interface';
-import { LikeData } from '../models/like.interface';
 import { Project } from '../models/project.interface';
 import { UserProfile } from '../models/user-profile.interface';
 
@@ -33,7 +32,7 @@ export class UserService {
   }
 
   getUserLikes(id: number) {
-    return this.http.get<LikeData[]>(`${environment.apiUrl}/users/liked/${id}`);
+    return this.http.get<Project[]>(`${environment.apiUrl}/users/liked/${id}`);
   }
 
   getUserProjects(id: number) {
@@ -66,7 +65,14 @@ export class UserService {
     );
   }
 
-  addFavorite(userId: number, projectId: number, addRemove: string) {
+  addRemoveFavorite(userId: number, projectId: number, addRemove: string) {
+    return this.http.post(
+      `${environment.apiUrl}/users/${userId}/${addRemove}/${projectId}`,
+      {}
+    );
+  }
+
+  addRemoveLike(userId: number, projectId: number, addRemove: string) {
     return this.http.post(
       `${environment.apiUrl}/users/${userId}/${addRemove}/${projectId}`,
       {}

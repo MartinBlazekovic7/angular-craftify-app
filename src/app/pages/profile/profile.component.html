@@ -34,7 +34,8 @@
     <h2>Likes</h2>
     <ul *ngIf="likes.length">
       <li *ngFor="let like of likes" class="userProfile__LikeItem">
-        <p>{{ like.projects }}</p>
+        <p>{{ like.title }}</p>
+        <a href="./project/{{ like.id }}">Open project</a>
       </li>
     </ul>
 

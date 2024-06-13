@@ -6,8 +6,12 @@
       <h1>{{ project.title }}</h1>
       <div class="projectPage__Features">
         <div class="buttons">
-          <button (click)="likeProject()" [disabled]="!isUserLoggedIn">
+          <button (click)="addRemoveLike()" [disabled]="!isUserLoggedIn">
+            @if(liked){
+            <i class="pi pi-thumbs-up-fill"></i>
+            } @else {
             <i class="pi pi-thumbs-up"></i>
+            }
             <span>{{ project.userLikes.length }}</span>
           </button>
           <button *ngIf="isUserLoggedIn" (click)="addRemoveFavorite()">
@@ -38,5 +42,35 @@
   </div>
 </div>
 
-<app-comments [comments]="project.comments"></app-comments>
+<div class="comments__Wrapper contentWrapper">
+  <div class="comments__Subtitle">
+    <h2>Comments ({{ project.comments.length }})</h2>
+  </div>
+
+  @if(project.comments.length === 0) {
+  <div class="comments__Empty">
+    <p>No comments yet</p>
+  </div>
+  } @else {
+  <div class="comments__Container">
+    @for (comment of project.comments; track comment) {
+    <div class="comment">
+      <div>
+        <i>{{ comment.user.username }}</i>
+        <i>{{ comment.commentTime.slice(0, 10) }}</i>
+      </div>
+      <p>{{ comment.comment }}</p>
+    </div>
+    }
+    <div *ngIf="isUserLoggedIn">
+      <textarea
+        [(ngModel)]="newComment"
+        placeholder="Write a comment..."
+      ></textarea>
+      <button (click)="addComment()">Add comment</button>
+    </div>
+  </div>
+  }
+</div>
+
 }

@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Project, ProjectForm } from '../models/project.interface';
 import { FilterInterface } from '../models/filter.interface';
 import { Observable } from 'rxjs';
+import { CommentDTO } from '../models/comment.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,10 @@ export class ProjectService {
       `${environment.apiUrl}/project/${projectData.id}`,
       projectData
     );
+  }
+
+  addComment(commentData: CommentDTO): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/comments`, commentData);
   }
 
   deleteProject(id: number) {

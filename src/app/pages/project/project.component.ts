@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProjectService } from '../../services/project.service';
@@ -8,11 +9,12 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { CommentDTO } from '../../models/comment.interface';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommentsComponent, CommonModule],
+  imports: [CommentsComponent, CommonModule, FormsModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss',
 })
@@ -25,9 +27,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   inFavorites = false;
 
+  liked = false;
+
   isUserLoggedIn = false;
 
   favorites: Project[] = [];
+
+  newComment: string = '';
 
   constructor(
     private projectService: ProjectService,
@@ -58,6 +64,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
             this.inFavorites = this.favorites.some(
               (favorite) => favorite.id == this.projectId
             );
+            this.liked =
+              this.project?.userLikes.some((user) => user.id == userId) ??
+              false;
           },
           error: () => {
             console.log('error');
@@ -92,7 +101,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   addRemoveFavorite(): void {
     this.userService
-      .addFavorite(
+      .addRemoveFavorite(
         this.projectId!,
         this.projectId!,
         this.inFavorites ? 'removeFavorite' : 'addFavorite'
@@ -107,7 +116,65 @@ export class ProjectComponent implements OnInit, OnDestroy {
       });
   }
 
-  likeProject(): void {}
+  addRemoveLike(): void {
+    const userJson = localStorage.getItem('user');
+    if (!userJson) {
+      return;
+    }
+
+    const user: UserProfile = JSON.parse(userJson);
+
+    this.userService
+      .addRemoveLike(
+        this.projectId!,
+        this.projectId!,
+        this.liked ? 'dislike' : 'like'
+      )
+      .subscribe({
+        next: () => {
+          this.liked = !this.liked;
+          this.project!.userLikes.push(user);
+        },
+        error: () => {
+          console.log('error');
+        },
+      });
+  }
+
+  addComment(): void {
+    if (!this.newComment) {
+      return;
+    }
+
+    const userJson = localStorage.getItem('user');
+    if (!userJson) {
+      return;
+    }
+
+    const user: UserProfile = JSON.parse(userJson);
+    const userId = user.id!;
+
+    const commentDTO: CommentDTO = {
+      comment: this.newComment,
+      projectId: Number(this.projectId!),
+      userId: userId,
+    };
+
+    this.projectService.addComment(commentDTO).subscribe({
+      next: () => {
+        this.project!.comments.push({
+          comment: this.newComment,
+          user: user,
+          commentTime: new Date().toISOString(),
+        });
+        this.newComment = '';
+        this.getProject();
+      },
+      error: () => {
+        console.log('error');
+      },
+    });
+  }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
