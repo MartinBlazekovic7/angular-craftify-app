@@ -163,6 +163,15 @@ export class AdminDashboardComponent {
     this.projectService.editProject(updatedProject).subscribe(() => {
       this.toggleModalProjectEdit = false;
       this.projectEditForm.reset();
+      const project: Project = {
+        ...this.selectedProject!,
+        title: updatedProject.title,
+        description: updatedProject.description,
+        content: updatedProject.content,
+      };
+      this.projects = this.projects.map((p) =>
+        p.id === project.id ? project : p
+      );
     });
   }
 
@@ -198,6 +207,12 @@ export class AdminDashboardComponent {
     this.newsService.editNews(updatedNews).subscribe(() => {
       this.toggleModalNewsEdit = false;
       this.newsEditForm.reset();
+      const news: NewsDetail = {
+        ...this.selectedNews!,
+        title: updatedNews.title,
+        content: updatedNews.content,
+      };
+      this.news = this.news.map((n) => (n.id === news.id ? news : n));
     });
   }
 
@@ -232,6 +247,14 @@ export class AdminDashboardComponent {
     this.tutorialService.editTutorial(updatedTutorial).subscribe(() => {
       this.toggleModalTutorialEdit = false;
       this.tutorialEditForm.reset();
+      const tutorial: Tutorial = {
+        ...this.selectedTutorial!,
+        title: updatedTutorial.title,
+        content: updatedTutorial.content,
+      };
+      this.tutorials = this.tutorials.map((t) =>
+        t.id === tutorial.id ? tutorial : t
+      );
     });
   }
 
