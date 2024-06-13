@@ -6,19 +6,24 @@ import { Tokens } from '../models/tokens.interface';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
-
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-
   router: any;
   constructor(private http: HttpClient) {}
 
   isUserLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');
+  }
+
+  isUserAdmin(): boolean {
+    const user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user).admin;
+    }
+    return false;
   }
 
   login(loginData: LoginDto): Observable<Tokens> {
@@ -37,16 +42,16 @@ export class AuthenticationService {
       );
   }
 
-  getUserId(): number | null{
+  getUserId(): number | null {
     const user = localStorage.getItem('user');
-    if(user){
+    if (user) {
       return JSON.parse(user).id;
     }
-    return null
+    return null;
   }
   getName(): string {
     const user = localStorage.getItem('user');
-    if(user){
+    if (user) {
       return JSON.parse(user).name;
     }
     return '';
@@ -68,11 +73,10 @@ export class AuthenticationService {
           localStorage.removeItem('refreshToken');
           localStorage.removeItem('user');
           this.router.navigate(['/login']);
-        }
+        },
       })
     );
   }
-  
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   refreshToken(): Observable<any> {
