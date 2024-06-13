@@ -1,76 +1,154 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { userService } from '../../services/user.service';
-import { Project } from '../../models/project.interface';
+import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Subscriber } from 'rxjs';
 import { Comment } from '../../models/comment.interface';
-import { LikeData } from '../../models/like.interface';
+import { Project } from '../../models/project.interface';
+import { UserProfile } from '../../models/user-profile.interface';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule, ToastModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+  styleUrl: './profile.component.scss',
+  providers: [MessageService],
 })
 export class ProfileComponent implements OnInit {
-  user: any;
+  user: UserProfile | undefined;
   projects: Project[] = [];
-  likes : LikeData[] = [];
+  likes: Project[] = [];
   comments: Comment[] = [];
+  userId!: number;
   isOwnProfile: boolean = false;
   categoryId!: number;
   showCommentsLikes: any;
-  isUserLoggedIn= true;
-  userid!: number;
+  subscription?: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
-    private userService: userService,
+    private userService: UserService,
     private router: Router,
-    private authService: AuthenticationService
-  ){}
+    private authService: AuthenticationService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user: UserProfile = JSON.parse(userJson);
+      this.userId = user.id!;
 
-    this.isUserLoggedIn = this.authService.isUserLoggedIn();
-      this.loadUserDetails(this.userid);
-    }
-      loadUserDetails(userId: number): void{
-      this.userService.getUserProjects(userId).subscribe(data =>{
-        this.projects = data;
+      this.userService.getUserProfile(this.userId).subscribe({
+        next: (user: UserProfile) => {
+          this.user = user;
+        },
+        error: () => {
+          this.user;
+        },
       });
-
-      this.userService.getUserComments(userId).subscribe(data =>{
-        this.comments = data;
-      });
-      
-      this.userService.getUserLikes(userId).subscribe(data =>{
-        this.likes = data;
-      });
-
     }
 
-    userId = this.authService.getUserId();
-    name = this.authService.getName();
+    this.loadUserComments();
+    this.loadUserLikes();
+    this.loadUserProjects();
+  }
 
-    navigateToCreateProject(): void{
-      this.router.navigate(['/project-form']);
-    }
+  loadUserComments(): void {
+    this.subscription = this.userService
+      .getUserComments(this.userId)
+      .subscribe({
+        next: (commnets: Comment[]) => {
+          this.comments = commnets;
+          console.log(this.comments);
+        },
+        error: () => {
+          this.comments;
+        },
+      });
+  }
 
-    removeCategory(categoryId:number, userid: number): void{
-      if( categoryId !== undefined && userid !== undefined){
-        this.userService.removeUserCategory(userid, categoryId).subscribe(() =>{
-          this.user.category = this.user.category.filter((cat: { id: number; }) => cat.id !== categoryId);
+  loadUserLikes(): void {
+    this.subscription = this.userService.getUserLikes(this.userId).subscribe({
+      next: (likes: Project[]) => {
+        this.likes = likes;
+        console.log(this.likes);
+      },
+      error: () => {
+        this.likes;
+      },
+    });
+  }
+
+  loadUserProjects(): void {
+    this.subscription = this.userService
+      .getUserProjects(this.userId)
+      .subscribe({
+        next: (projects: Project[]) => {
+          this.projects = projects;
+          console.log(this.projects);
+        },
+        error: () => {
+          this.projects;
+        },
+      });
+  }
+
+  navigateToCreateProject(): void {
+    this.router.navigate(['/create-project']);
+  }
+
+  removeCategory(categoryId: number): void {
+    this.userService
+      .removeUserCategory(this.userId, categoryId)
+      .subscribe((response) => {
+        console.log('category removed', response);
+      });
+  }
+
+  removeLike(projectId: number): void {
+    this.userService.removeLike(this.userId, projectId).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully removed like.',
         });
-      } else{
-        console.error('cannot remove category!');
-      }
-    }
+        this.loadUserLikes();
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Failed to remove like.',
+        });
+        console.log('error');
+      },
+    });
+  }
 
-    toggleCommentsLikes(): void{
-      this.showCommentsLikes = !this.showCommentsLikes;
-    }
-
+  removeComment(commentId: number): void {
+    this.userService.removeComment(commentId).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully removed comment.',
+        });
+        this.loadUserComments();
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Failed to remove comment.',
+        });
+        console.log('error');
+      },
+    });
+  }
 }

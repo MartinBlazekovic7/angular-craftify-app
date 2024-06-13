@@ -43,14 +43,6 @@
           [routerLinkActiveOptions]="{ exact: true }"
           >NEWS</a
         >
-        <a
-          (click)="sidebarVisible = false"
-          class="sidebarMenu__MenuItem"
-          [routerLink]="['profile']"
-          [routerLinkActive]="['routeSelected']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >MY PROFILE</a
-        >
       </div>
     </div>
   </ng-template>
@@ -75,8 +67,23 @@
 <p-overlayPanel #op2>
   <div class="userOverlay__Container" *ngIf="isUserLoggedIn">
     <div class="userOverlay__Items">
-      <a   class="userOverlay__Item" (click)="op2.hide()" [routerLink]="['user-settings']"
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['profile']"
+        >PROFILE</a
+      >
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['user-settings']"
         >SETTINGS</a
+      >
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['favorites']"
+        >FAVORITES</a
       >
       <button class="userOverlay__Item" (click)="logout()">LOG OUT</button>
     </div>

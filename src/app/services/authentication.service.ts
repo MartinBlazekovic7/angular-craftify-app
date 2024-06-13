@@ -18,6 +18,14 @@ export class AuthenticationService {
     return !!localStorage.getItem('accessToken');
   }
 
+  isUserAdmin(): boolean {
+    const user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user).admin;
+    }
+    return false;
+  }
+
   login(loginData: LoginDto): Observable<Tokens> {
     return this.http
       .post<Tokens>(`${environment.apiUrl}/auth/login`, loginData)
@@ -34,16 +42,16 @@ export class AuthenticationService {
       );
   }
 
-  getUserId(): number | null{
+  getUserId(): number | null {
     const user = localStorage.getItem('user');
-    if(user){
+    if (user) {
       return JSON.parse(user).id;
     }
-    return null
+    return null;
   }
   getName(): string {
     const user = localStorage.getItem('user');
-    if(user){
+    if (user) {
       return JSON.parse(user).name;
     }
     return '';
@@ -65,11 +73,10 @@ export class AuthenticationService {
           localStorage.removeItem('refreshToken');
           localStorage.removeItem('user');
           this.router.navigate(['/login']);
-        }
+        },
       })
     );
   }
-  
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   refreshToken(): Observable<any> {
@@ -79,8 +86,7 @@ export class AuthenticationService {
       return throwError(() => new Error('No refresh token found'));
     }
     const body = {
-      refreshToken: refreshToken,
-      expiredAccessToken: localStorage.getItem('accessToken'),
+      token: refreshToken,
     };
     return this.http.post<any>(`${environment.apiUrl}/refreshToken`, body).pipe(
       tap((response) => {

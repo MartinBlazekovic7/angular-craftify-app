@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './utils/auth.guard';
+import { AdminGuard } from './utils/admin.guard';
+import { UnauthGuard } from './utils/unauth.guard';
 
-<<<<<<< Updated upstream
-export const routes: Routes = [];
-=======
 export const routes: Routes = [
   {
     path: '',
@@ -23,13 +23,13 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [AuthGuard],
+    canActivate: [UnauthGuard],
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'registration',
-    canActivate: [AuthGuard],
+    canActivate: [UnauthGuard],
     loadComponent: () =>
       import('./pages/registration/registration.component').then(
         (m) => m.RegistrationComponent
@@ -37,7 +37,7 @@ export const routes: Routes = [
   },
   {
     path: 'favorites',
-    canActivate: [!AuthGuard],
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/favorites/favorites.component').then(
         (m) => m.FavoritesComponent
@@ -45,7 +45,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin-dashboard',
-    canActivate: [AdminGuard],
+    canActivate: [AuthGuard, AdminGuard],
     loadComponent: () =>
       import('./pages/admin-dashboard/admin-dashboard.component').then(
         (m) => m.AdminDashboardComponent
@@ -53,6 +53,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/profile/profile.component').then(
         (m) => m.ProfileComponent
@@ -60,6 +61,7 @@ export const routes: Routes = [
   },
   {
     path: 'user-settings',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/user-settings/user-settings.component').then(
         (m) => m.UserSettingsComponent
@@ -80,8 +82,8 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'create-project',
-    canActivate: [!AuthGuard],
+    path: 'project-form',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/project-form/project-form.component').then(
         (m) => m.ProjectFormComponent
@@ -90,6 +92,7 @@ export const routes: Routes = [
 
   {
     path: 'news-detail/:id',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./pages/news-detail/news-detail.component').then(
         (m) => m.NewsDetailComponent
@@ -101,4 +104,3 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 ];
->>>>>>> Stashed changes

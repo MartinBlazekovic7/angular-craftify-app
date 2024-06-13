@@ -1,57 +1,120 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
-import { userService } from '../../services/user.service';
-import { Subscription } from 'rxjs';
+import {
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
+import { UserService } from '../../services/user.service';
 import { UserProfile } from '../../models/user-profile.interface';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
+import { UserDTO } from '../../models/tokens.interface';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { LanguageService } from '../../services/language.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ToastModule, TranslateModule],
   templateUrl: './user-settings.component.html',
-  styleUrl: './user-settings.component.scss'
+  styleUrl: './user-settings.component.scss',
+  providers: [MessageService],
 })
+export class UserSettingsComponent implements OnInit {
+  userEditForm = this.fb.group({
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    name: ['', Validators.required],
+  });
 
-export class UserSettingsComponent implements OnInit{
-
-  profileForm!: FormGroup
+  user: UserProfile | undefined;
   userId!: number;
-  subscription?: Subscription
-  name: any;
-  userName: any;
-  email: any;
-  lastValidForms: UserProfile = {name: '', username: '', email: ''};
+  selectedLanguage: string = 'hr';
 
-  constructor(private formBuilder: FormBuilder, 
-    private userService: userService,
-    private authService: AuthenticationService,
-    private router: Router,
-    ){}
-    
+  constructor(
+    private fb: UntypedFormBuilder,
+    private userService: UserService,
+    private messageService: MessageService,
+    private languageService: LanguageService,
+    public translateService: TranslateService
+  ) {
+    this.languageService.initLanguage();
+    this.selectedLanguage = this.languageService.getCurrentLanguage();
+  }
 
   ngOnInit(): void {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user: UserProfile = JSON.parse(userJson);
+      this.userId = user.id!;
 
-    const userId = this.authService.getUserId();
-
-    this.profileForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      userName: ['', Validators.required, 
-                     Validators.minLength(6), 
-                     Validators.maxLength(28)],
-      email: ['', Validators.required, Validators.email], 
-    });
-
-  }
-  
- 
-  onSubmit(){
-    if(this.profileForm?.valid){
-      console.log('Form submitted', this.profileForm.value);
-    }else{
-      console.log('Form is invalid');
+      this.userService.getUserProfile(this.userId).subscribe({
+        next: (user: UserProfile) => {
+          this.user = user;
+          this.userEditForm.patchValue({
+            username: user.username,
+            email: user.email,
+            name: user.name,
+          });
+        },
+        error: () => {
+          this.user;
+        },
+      });
     }
+  }
+
+  onSubmit() {
+    if (!this.userEditForm.valid) {
+      this.userEditForm.markAllAsTouched();
+      return;
+    }
+
+    const userDTO: UserDTO = {
+      id: this.userId,
+      username: this.userEditForm.value.username,
+      email: this.userEditForm.value.email,
+      name: this.userEditForm.value.name,
+      password: 'newPassword123',
+      isAdmin: false,
+      isPrivate: false,
+      userPreferences: [],
+    };
+
+    this.userService.editUser(userDTO).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully updated user profile.',
+        });
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: 'Error updating user profile. Please try again.',
+        });
+      },
+    });
+  }
+
+  changeLanguage(language: string) {
+    this.translateService.use(language);
+    this.selectedLanguage = language;
+  }
+
+  get username() {
+    return this.userEditForm.get('username');
+  }
+
+  get email() {
+    return this.userEditForm.get('email');
+  }
+
+  get name() {
+    return this.userEditForm.get('name');
   }
 }

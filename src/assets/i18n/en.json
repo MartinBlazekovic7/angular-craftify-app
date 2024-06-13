@@ -1,0 +1,94 @@
+
+{
+    "LANGUAGE": "Language",
+    "CROATIAN": "Croatian",
+    "ENGLISH": "English",
+    
+    "navigationBar":{
+        "home" : "Home",
+        "tutorials": "Tutorials",
+        "news": "News",
+        "myProfile": "My Profile",
+        "login": "Login",
+        "register": "Register"
+    },
+    "comments":{
+        "comments": "Comments",
+        "commentEmpty": "No comments"
+    }
+    ,
+    "homepageSlider": {
+        "readMore": "Read more"
+    },
+    "homepageSearch": {
+        "search": "Search",
+        "readMore": "Read more",
+        "noProject": "PRoject not found",
+        "enterTerm": "Enter search term"
+    },
+    "home":{
+        "title": "DIY project i handcrafts",
+        "description1": "Making connections",
+        "description2": "One project at a time",
+        "discover": "Search",
+        "title2": "What we offer:",
+        "li1": "Discover projects",
+        "li2": "Add to favourites",
+        "li3": "Follow creators",
+        "li4": "Comment, like and share projects",
+        "li5": "Start with tutorials",
+        "li6": "Read latest news",
+        "li7": "Presonalized feed",
+        "forYou": "For you",
+        "search": "Search"
+    },
+    "login":{
+        "back": "Back",
+        "login": "Login",
+        "message": "Dont have account?",
+        "register": "Register",
+        "submit": "Submit"
+    },
+    "news":{
+        "news": "News",
+        "sort": "Sort",
+        "filter": "Filter",
+        "readMore": "Read more"
+    },
+    "profile":{
+        "createProject": "Create project",
+        "category": "Category of interest",
+        "publishedProjects": "Publshed projcets",
+        "commAndLike": "Commnets and likes",
+        "showCommAndLike": "Show comments and likes",
+        "comments": "Comments",
+        "likes": "Likes"
+    },
+    "projectForm":{
+        "title": "Title",
+        "content": "Content",
+        "category": "Category",
+        "complexity": "Complexity",
+        "submit": "Submit"
+    },
+    "register":{
+        "back" :"Back",
+        "register":"Register",
+        "message": "Already have an account?",
+        "login":"Login",
+        "submit": "Submit"
+
+    },
+
+    "tutorials":{
+        "tutorials":"Tutorials",
+        "readMore":"Read more"
+    },
+    "userSettings":{
+        "profielImage": "Profile picture",
+        "name":"Name:",
+        "username": "Username",
+        "email":"Email",
+        "password":"Password"
+    }
+}

@@ -31,19 +31,16 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isUserLoggedIn();
   }
-
-  logout() {
+  logout(): void {
     this.authService.logout().subscribe({
       next: () => {
         console.log('Logged out successfully');
-        window.location.href = '/'
-        window.location.reload();
+        window.location.href = '/';
       },
       error: (error) => {
         console.error('Error during logout', error);
-        window.location.href = '/'
-        window.location.reload();
-      }
+        window.location.href = '/';
+      },
     });
   }
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TutorialService } from '../../services/tutorial.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tutorial } from '../../models/tutorial.interface';
 
@@ -19,7 +20,8 @@ export class TutorialsComponent implements OnInit, OnDestroy{
 
   tutorials?: Tutorial[] = [];
 
-  constructor(private tutorialService: TutorialService){}
+  constructor(private tutorialService: TutorialService, private router: Router){}
+
 
   ngOnInit(): void {
       this.getTutorials();

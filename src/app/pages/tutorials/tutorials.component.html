@@ -1,0 +1,36 @@
+<div class="tutorialsPage__Header">
+  <img
+    src="../../../assets/images/tutorials-page.jpg"
+    alt="Tutorials page header"
+  />
+</div>
+<div class="tutorialsPage__Wrapper contentWrapper">
+  <div class="tutorials__Toolbar">
+    <div class="tutorials__ToolbarTitle">
+      <h2>TUTORIALS</h2>
+    </div>
+    <div class="tutorials__ToolbarSearch">
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchTerm"
+        placeholder="Search keywords"
+      />
+    </div>
+  </div>
+  <div class="tutorials__List">
+    @for (item of tutorials; track item) {
+    <div class="tutorials__Item">
+      <div class="tutorials__ItemContent">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+        <a href="tutorial/{{ item.id }}">Read more</a>
+      </div>
+      <div class="tutorials__ItemRating">
+        <p>{{ item.rating }}</p>
+      </div>
+    </div>
+    <hr />
+    }
+  </div>
+</div>
