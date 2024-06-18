@@ -11,7 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class TranslateComponent {
   constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'hr']);
-    translate.setDefaultLang('hr');
-    translate.use('hr');
+    translate.setDefaultLang('en');
+    translate.use('en');
   }
 }

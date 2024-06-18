@@ -5,11 +5,15 @@ import { Project } from '../../models/project.interface';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, ToastModule],
+  imports: [
+    CommonModule, 
+    ToastModule,
+    TranslateModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [MessageService],

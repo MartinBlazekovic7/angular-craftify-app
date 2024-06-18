@@ -1,6 +1,6 @@
 <div class="newsPage__Header">
   <img src="../../../assets/images/news-page.jpg" alt="News page header" />
-  <h1>NEWS</h1>
+  <h1>{{"news.news" | translate }}</h1>
 </div>
 <div class="newsPage__Wrapper contentWrapper">
   <div class="news__Toolbar">
@@ -13,8 +13,8 @@
       />
     </div>
     <div class="news__ToolbarButtons">
-      <button>SORT</button>
-      <button>FILTER</button>
+      <button>{{"news.sort" | translate }}</button>
+      <button>{{"news.filter" | translate }}</button>
     </div>
   </div>
   <div class="news__List">
@@ -29,7 +29,7 @@
       <div class="news__ItemContent">
         <h2>{{ item.title }}</h2>
         <p>{{ item.content }}</p>
-        <a href="news-detail/{{ item.id }}">Read more</a>
+        <a href="news-detail/{{ item.id }}">{{"news.readMore" | translate }}</a>
       </div>
     </div>
     }

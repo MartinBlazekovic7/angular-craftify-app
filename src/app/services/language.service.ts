@@ -11,7 +11,7 @@ export class LanguageService {
   }
 
    initLanguage(){
-    const savedLanguage = localStorage.getItem('selectedLanguage') || 'hr';
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     this.translate.setDefaultLang(savedLanguage);
     this.translate.use(savedLanguage);
   }

@@ -10,11 +10,12 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule, ToastModule],
+  imports: [CommonModule, RouterModule, ToastModule, TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   providers: [MessageService],
