@@ -22,6 +22,7 @@ export class TutorialsComponent implements OnInit, OnDestroy{
 
   constructor(private tutorialService: TutorialService, private router: Router){}
 
+
   ngOnInit(): void {
       this.getTutorials();
   }

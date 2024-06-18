@@ -1,8 +1,17 @@
-import { UserData } from './user-data.interface';
+import { Project } from './project.interface';
+import { UserProfile } from './user-profile.interface';
 
 export interface Comment {
-  id: number;
+  id?: number;
   comment: string;
-  user: UserData;
+  user: UserProfile;
   commentTime: string;
+  project?: Project;
+}
+
+export interface CommentDTO {
+  comment: string;
+  projectId: number;
+  userId: number;
+  parentCommentId?: number;
 }

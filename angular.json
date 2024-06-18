@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-craftify-app": {
+      "i18n": {
+        "sourceLocale":"en",
+        "locales": {
+          "hr": "src/"
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -110,6 +116,37 @@
               "src/**/*.html"
             ]
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-craftify-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-craftify-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-craftify-app:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-craftify-app:serve:production"
+            }
+          }
         }
       }
     }
@@ -117,7 +154,9 @@
   "cli": {
     "analytics": false,
     "schematicCollections": [
-      "@angular-eslint/schematics"
+      "@cypress/schematic",
+      "@angular-eslint/schematics",
+      "@schematics/angular"
     ]
   }
 }

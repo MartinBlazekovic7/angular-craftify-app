@@ -1,0 +1,96 @@
+{
+  "LANGUAGE": "Jezik",
+  "CROATIAN": "Hrvatski",
+  "ENGLISH": "Engleski",
+
+  "navigationBar": {
+    "home": "Početna stranica",
+    "tutorials": "Tutorijali",
+    "news": "Vijesti",
+    "myProfile": "Moj profil",
+    "logOut": "Odjava",
+    "login": "Prijava",
+    "register": "Registracija",
+    "settings": "Postavke",
+    "favorites": "Favoriti",
+    "profile": "Profil"
+  },
+  "comments": {
+    "comments": "Komentari",
+    "commentEmpty": "Nema komentara"
+  },
+  "homepageSlider": {
+    "readMore": "Pročitaj više"
+  },
+  "homepageSearch": {
+    "search": "Pretraži",
+    "readMore": "Pročitaj više",
+    "noProject": "Projekt nije pronađen",
+    "enterTerm": "Upiši pojam za pretraživanje"
+  },
+  "home": {
+    "title": "DIY projekti i rukotvorine",
+    "description1": "Izrada veza",
+    "description2": "Jedan po jedan projekt",
+    "discover": "Istraži",
+    "title2": "Što nudimo:",
+    "li1": "Istraži projekte",
+    "li2": "Dodaj u favorite",
+    "li3": "Zaprati korisnike",
+    "li4": "Komentiraj, lajkaj i sheraj projekte",
+    "li5": "Započni s tutorijalima",
+    "li6": "Pročitaj najnovije vijesti",
+    "li7": "Personalizirane povratne informacije",
+    "forYou": "Otkrij",
+    "search": "Pretraži"
+  },
+  "login": {
+    "back": "Natrag",
+    "login": "Prijava",
+    "message": "Nemaš račun?",
+    "register": "Registracija",
+    "submit": "Podnesi"
+  },
+  "news": {
+    "news": "Vijesti",
+    "sort": "Sortitraj",
+    "filter": "Filtriraj",
+    "readMore": "Pročitaj više"
+  },
+  "profile": {
+    "createProject": "Izradi projekt",
+    "category": "Kategorije od interesa",
+    "publishedProjects": "Objavljeni projekti",
+    "commAndLike": "Komentari i ozanke sviđa mi se",
+    "showCommAndLike": "Prikaži komentare i oznake sviđa mi se",
+    "comments": "Komentari",
+    "likes": "Oznake sviđa mi se"
+  },
+  "projectForm": {
+    "title": "Naslov",
+    "content": "Sadržaj",
+    "category": "Kategorija",
+    "complexity": "Sloenost",
+    "submit": "Podnesi"
+  },
+  "register": {
+    "back": "Natrag",
+    "register": "Registracija",
+    "message": "Imaš račun?",
+    "login": "Prijava",
+    "submit": "Podnesi"
+  },
+
+  "tutorials": {
+    "tutorials": "Tutorijali",
+    "readMore": "Pročitaj više"
+  },
+  "userSettings": {
+    "userSettings": "Postavke korisnika",
+    "name": "Ime",
+    "username": "Korisničko ime",
+    "email": "Email",
+    "password": "Lozinka",
+    "save": "SPREMI"
+  }
+}

@@ -6,7 +6,12 @@
     <img src="../../../assets/images/craftify-logo.svg" alt="Craftify Logo" />
   </div>
   <div class="navigationBar__UserButton">
-    <button (click)="op.show($event)"><i class="pi pi-user"></i></button>
+    <button *ngIf="!isUserLoggedIn" (click)="op.show($event)">
+      <i class="pi pi-user"></i>
+    </button>
+    <button *ngIf="isUserLoggedIn" (click)="op2.show($event)">
+      <i class="pi pi-user"></i>
+    </button>
   </div>
 </div>
 
@@ -20,7 +25,7 @@
           [routerLink]="['']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >HOME</a
+          >{{ "navigationBar.home" | translate }}</a
         >
         <a
           (click)="sidebarVisible = false"
@@ -28,7 +33,7 @@
           [routerLink]="['tutorials']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >TUTORIALS</a
+          >{{ "navigationBar.tutorials" | translate }}</a
         >
         <a
           (click)="sidebarVisible = false"
@@ -36,15 +41,7 @@
           [routerLink]="['news']"
           [routerLinkActive]="['routeSelected']"
           [routerLinkActiveOptions]="{ exact: true }"
-          >NEWS</a
-        >
-        <a
-          (click)="sidebarVisible = false"
-          class="sidebarMenu__MenuItem"
-          [routerLink]="['profile']"
-          [routerLinkActive]="['routeSelected']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >MY PROFILE</a
+          >{{ "navigationBar.news" | translate }}</a
         >
       </div>
     </div>
@@ -52,7 +49,7 @@
 </p-sidebar>
 
 <p-overlayPanel #op>
-  <div class="userOverlay__Container">
+  <div class="userOverlay__Container" *ngIf="!isUserLoggedIn">
     <div class="userOverlay__Items">
       <a class="userOverlay__Item" (click)="op.hide()" [routerLink]="['login']"
         >LOGIN</a
@@ -63,6 +60,34 @@
         [routerLink]="['registration']"
         >REGISTER</a
       >
+    </div>
+  </div>
+</p-overlayPanel>
+
+<p-overlayPanel #op2>
+  <div class="userOverlay__Container" *ngIf="isUserLoggedIn">
+    <div class="userOverlay__Items">
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['profile']"
+        >{{ "navigationBar.profile" | translate }}</a
+      >
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['user-settings']"
+        >{{ "navigationBar.settings" | translate }}</a
+      >
+      <a
+        class="userOverlay__Item"
+        (click)="op2.hide()"
+        [routerLink]="['favorites']"
+        >{{ "navigationBar.favorites" | translate }}</a
+      >
+      <button class="userOverlay__Item" (click)="logout()">
+        {{ "navigationBar.logOut" | translate }}
+      </button>
     </div>
   </div>
 </p-overlayPanel>

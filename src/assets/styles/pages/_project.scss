@@ -61,3 +61,136 @@
     }
   }
 }
+
+.projectSearch {
+  &__Toolbar {
+    button {
+      @include main-button;
+
+      height: 40px;
+      padding: 0;
+    }
+  }
+
+  &__ListEmpty {
+    @include display-flex(column, center, center);
+
+    height: 200px;
+    width: 100%;
+  }
+
+  &__ResultsContainer {
+    position: relative;
+  }
+}
+
+.projectSearch__ItemContent {
+  width: 100%;
+}
+
+.projectForm {
+  &__Container {
+    width: 100%;
+    @include display-flex(column, center, center);
+    padding: 20px;
+  }
+
+  &__FormContainer {
+    width: 100%;
+    max-width: 500px;
+    background: $white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    @include display-flex(column, center, center);
+
+    h2 {
+      font-family: $heading-font-family;
+      color: $black;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: $black;
+      }
+
+      input,
+      textarea,
+      select {
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      button {
+        @include main-button;
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+
+  &__SubmitMessage {
+    margin-top: 20px;
+    color: lightgreen;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+.form__Errors {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.form__Error {
+  display: block;
+  color: red;
+  font-size: 14px;
+  line-height: 1.43;
+
+  & + .form__Error {
+    margin-top: 5px;
+  }
+}
+
+.comments__AddComment {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 10px;
+    font-family: inherit;
+  }
+
+  button {
+    @include main-button;
+    align-self: flex-start;
+  }
+}

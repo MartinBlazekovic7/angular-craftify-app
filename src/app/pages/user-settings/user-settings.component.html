@@ -1,0 +1,66 @@
+<div class="settingsPage">
+  <div class="settingsPage__Container">
+    <div class="settingsPage__FormContainer">
+      <h2>{{ "userSettings.userSettings" | translate }}</h2>
+      <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+        <div class="settingsPage__FormGroup">
+          <label for="name">{{ "userSettings.name" | translate }}</label>
+          <input type="text" id="name" formControlName="name" />
+          <ul
+            class="form__Errors"
+            *ngIf="name && name.invalid && (name.dirty || name.touched)"
+          >
+            <li class="form__Error" *ngIf="name?.errors?.['required']">
+              Name is required.
+            </li>
+          </ul>
+        </div>
+        <div class="settingsPage__FormGroup">
+          <label for="username">{{
+            "userSettings.username" | translate
+          }}</label>
+          <input type="text" id="username" formControlName="username" />
+          <ul
+            class="form__Errors"
+            *ngIf="
+              username &&
+              username.invalid &&
+              (username.dirty || username.touched)
+            "
+          >
+            <li class="form__Error" *ngIf="username?.errors?.['required']">
+              Username is required.
+            </li>
+          </ul>
+        </div>
+        <div class="settingsPage__FormGroup">
+          <label for="email">{{ "userSettings.email" | translate }}</label>
+          <input type="email" id="email" formControlName="email" />
+          <ul
+            class="form__Errors"
+            *ngIf="email && email.invalid && (email.dirty || email.touched)"
+          >
+            <li class="form__Error" *ngIf="email?.errors?.['required']">
+              Email is required.
+            </li>
+          </ul>
+        </div>
+        <div class="settingsPage__ButtonGroup">
+          <button type="submit" class="settingsPage__SubmitButton">
+            {{ "userSettings.save" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="settingsPage__LanguageContainer">
+      <h2>{{ "LANGUAGE" | translate }}</h2>
+      <button (click)="changeLanguage('hr')">
+        {{ "CROATIAN" | translate }}
+      </button>
+      <button (click)="changeLanguage('en')">
+        {{ "ENGLISH" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<p-toast />
