@@ -9,6 +9,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthenticationService } from './services/authentication.service';
 import { filter } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,12 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private translateService: TranslateService
+  ) {
+    translateService.setDefaultLang('en');
+    translateService.use('en');
+  }
 
   ngOnInit(): void {
     this.router.events

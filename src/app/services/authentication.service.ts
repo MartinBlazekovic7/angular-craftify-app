@@ -4,7 +4,6 @@ import { Observable, tap, throwError } from 'rxjs';
 import { LoginDto } from '../models/login-dto.interface';
 import { Tokens } from '../models/tokens.interface';
 import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 @Injectable({

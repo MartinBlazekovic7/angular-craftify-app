@@ -1,10 +1,10 @@
 <div class="settingsPage">
   <div class="settingsPage__Container">
     <div class="settingsPage__FormContainer">
-      <h2>User Settings</h2>
+      <h2>{{ "userSettings.userSettings" | translate }}</h2>
       <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
         <div class="settingsPage__FormGroup">
-          <label for="name">Name</label>
+          <label for="name">{{ "userSettings.name" | translate }}</label>
           <input type="text" id="name" formControlName="name" />
           <ul
             class="form__Errors"
@@ -16,7 +16,9 @@
           </ul>
         </div>
         <div class="settingsPage__FormGroup">
-          <label for="username">Username</label>
+          <label for="username">{{
+            "userSettings.username" | translate
+          }}</label>
           <input type="text" id="username" formControlName="username" />
           <ul
             class="form__Errors"
@@ -32,7 +34,7 @@
           </ul>
         </div>
         <div class="settingsPage__FormGroup">
-          <label for="email">Email</label>
+          <label for="email">{{ "userSettings.email" | translate }}</label>
           <input type="email" id="email" formControlName="email" />
           <ul
             class="form__Errors"
@@ -44,24 +46,20 @@
           </ul>
         </div>
         <div class="settingsPage__ButtonGroup">
-          <button type="submit" class="settingsPage__SubmitButton">Save</button>
+          <button type="submit" class="settingsPage__SubmitButton">
+            {{ "userSettings.save" | translate }}
+          </button>
         </div>
       </form>
     </div>
     <div class="settingsPage__LanguageContainer">
-      <h2>{{'LANGUAGE' | translate }}</h2>
-      <select>
-        <option
-          selected
-          [value]="'Croatian'"
-          (click)="changeLanguage('Croatian')"
-        >
-          {{'CROATIAN' | translate }}
-        </option>
-        <option [value]="'English'" (click)="changeLanguage('English')">
-          {{'ENGLISH' | translate}}
-        </option>
-      </select>
+      <h2>{{ "LANGUAGE" | translate }}</h2>
+      <button (click)="changeLanguage('hr')">
+        {{ "CROATIAN" | translate }}
+      </button>
+      <button (click)="changeLanguage('en')">
+        {{ "ENGLISH" | translate }}
+      </button>
     </div>
   </div>
 </div>
