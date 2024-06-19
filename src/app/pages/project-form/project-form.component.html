@@ -3,19 +3,19 @@
     <div class="projectForm__FormContainer">
       <h2>Create Project</h2>
       <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-        <label for="title">Title</label>
-        <input id="title" formControlName="title" type="text" />
+        <label for="title">{{"projectForm.title" | translate }}</label>
+        <input id="title" formControlName="{{'projectFomr.title' | translate}}" type="text" />
         <ul
           class="form__Errors"
           *ngIf="title && title.invalid && (title.dirty || title.touched)"
         >
           <li class="form__Error" *ngIf="title?.errors?.['required']">
-            Title is required.
+            {{"projectFomr.titlereq" | translate }}
           </li>
         </ul>
 
-        <label for="content">Content</label>
-        <textarea id="content" formControlName="content"></textarea>
+        <label for="content">{{"projcetForm.content" | translate}}</label>
+        <textarea id="content" formControlName="{{'projectForm.content' | translate }}"></textarea>
         <ul
           class="form__Errors"
           *ngIf="
@@ -23,12 +23,12 @@
           "
         >
           <li class="form__Error" *ngIf="content?.errors?.['required']">
-            Content is required.
+            {{"projectFomr.contentreq" | translate }}
           </li>
         </ul>
 
-        <label for="description">Description</label>
-        <textarea id="description" formControlName="description"></textarea>
+        <label for="description">{{"projectForm.description" | translate }}</label>
+        <textarea id="description" formControlName="{{'projectForm.description' | translate }}"></textarea>
         <ul
           class="form__Errors"
           *ngIf="
@@ -38,12 +38,12 @@
           "
         >
           <li class="form__Error" *ngIf="description?.errors?.['required']">
-            Description is required.
+            {{"projectForm.descriptionreq" | translate }}
           </li>
         </ul>
 
-        <label for="category">Category</label>
-        <select id="category" formControlName="category">
+        <label for="category">{{"projectForm.category" | translate }}</label>
+        <select id="category" formControlName="{{'projcetForm.category' | translate }}">
           <option *ngFor="let category of categoryTags" [value]="category.id">
             {{ category.name }}
           </option>
@@ -55,12 +55,12 @@
           "
         >
           <li class="form__Error" *ngIf="category?.errors?.['required']">
-            Category is required.
+            {{"projectForm.categoryreq" | translate}}
           </li>
         </ul>
 
-        <label for="complexity">Complexity</label>
-        <select id="complexity" formControlName="complexity">
+        <label for="complexity">{{"projectForm.complexity" | translate }}</label>
+        <select id="complexity" formControlName="{{'projectForm.complexity' | translate }}">
           <option
             *ngFor="let complexity of complexityTags"
             [value]="complexity.id"
@@ -77,11 +77,11 @@
           "
         >
           <li class="form__Error" *ngIf="complexity?.errors?.['required']">
-            Complexity is required.
+            {{"projectForm.complexityreq" | translate }}
           </li>
         </ul>
 
-        <button type="submit">Submit</button>
+        <button type="submit">{{"projectForm.submit" | translate }}</button>
       </form>
 
       <div *ngIf="submitMessage" class="projectForm__SubmitMessage">

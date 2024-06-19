@@ -7,11 +7,12 @@ import { Comment } from '../models/comment.interface';
 import { Project } from '../models/project.interface';
 import { UserProfile } from '../models/user-profile.interface';
 import { UserDTO } from '../models/tokens.interface';
+import { UserActions } from '../interface/user.action.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements UserActions{
   constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<any> {

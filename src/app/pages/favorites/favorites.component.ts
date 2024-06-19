@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { UserProfile } from '../../models/user-profile.interface';
 import { UserService } from '../../services/user.service';
 import { Project } from '../../models/project.interface';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
+import { UserActions } from '../../interface/user.action.interface';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, ToastModule],
+  imports: [
+    CommonModule, 
+    ToastModule,
+    TranslateModule],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   providers: [MessageService],
@@ -19,7 +24,7 @@ export class FavoritesComponent implements OnInit {
   favorites: Project[] = [];
 
   constructor(
-    private userService: UserService,
+    @Inject(UserService) private userService: UserActions,
     private messageService: MessageService
   ) {}
 

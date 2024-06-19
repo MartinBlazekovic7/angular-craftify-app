@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { NewsDetail } from '../../models/newsDetail.interface';
 import { NewsDetailService } from '../../services/newsDetail.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss',
 })

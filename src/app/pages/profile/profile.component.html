@@ -1,51 +1,51 @@
 <div *ngIf="user" class="userProfile">
   <div class="userProfile__Header">
-    <h1>{{ user.name }}'s Profile</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Username: {{ user.username }}</p>
-    <a href="user-settings" class="main-button">EDIT PROFILE</a>
+    <h1>{{ user.name }}</h1>
+    <p>{{"profile.email" | translate }}: {{ user.email }}</p>
+    <p>{{"profile.username" | translate }}: {{ user.username }}</p>
+    <a href="user-settings" class="main-button">{{"profile.editProfile" | translate }}</a>
   </div>
 
   <div class="userProfile__Projects">
-    <h2>Projects</h2>
-    <a href="project-form" class="main-button">CREATE PROJECT</a>
+    <h2>{{"profile.project" | translate }}</h2>
+    <a href="project-form" class="main-button">{{"profile.createProject" | translate }}</a>
     <ul *ngIf="projects.length">
       <li *ngFor="let project of projects" class="userProfile__ProjectItem">
         <h3>{{ project.title }}</h3>
         <p>{{ project.content }}</p>
-        <a href="./project/{{ project.id }}">Open</a>
+        <a href="./project/{{ project.id }}">{{"profile.open" | translate }}</a>
       </li>
     </ul>
 
-    <p *ngIf="!projects.length">No comments yet.</p>
+    <p *ngIf="!projects.length">{{"profile.noComments" | translate }}</p>
   </div>
 
   <div class="userProfile__Comments">
-    <h2>Comments</h2>
+    <h2>{{"profile.comments" | translate }}</h2>
     <ul *ngIf="comments.length">
       <li *ngFor="let comment of comments" class="userProfile__CommentItem">
         <p>{{ comment.comment }}</p>
-        <small>Posted on: {{ comment.commentTime | date : "short" }}</small>
+        <small>{{"profile.pusblished" | translate }} {{ comment.commentTime | date : "short" }}</small>
         <br />
-        <a href="./project/{{ comment.project!.id }}">Open project</a>
-        <button (click)="removeComment(comment.id!)">Delete comment</button>
+        <a href="./project/{{ comment.project!.id }}">{{"profile.open" | translate }}</a>
+        <button (click)="removeComment(comment.id!)">{{"profile.delete" | translate}}</button>
       </li>
     </ul>
 
-    <p *ngIf="!comments.length">No comments yet.</p>
+    <p *ngIf="!comments.length">{{"profile.noComments" | translate}}</p>
   </div>
 
   <div class="userProfile__Likes">
-    <h2>Likes</h2>
+    <h2>{{"profile.likes" | translate }}</h2>
     <ul *ngIf="likes.length">
       <li *ngFor="let like of likes" class="userProfile__LikeItem">
         <p>{{ like.title }}</p>
-        <a href="./project/{{ like.id }}">Open project</a>
-        <button (click)="removeLike(like.id)">Dislike</button>
+        <a href="./project/{{ like.id }}">{{"profile.open" | translate}}</a>
+        <button (click)="removeLike(like.id)">{{"profile.dislike" | translate }}</button>
       </li>
     </ul>
 
-    <p *ngIf="!likes.length">No likes yet.</p>
+    <p *ngIf="!likes.length">{{"profile.noLikes" | translate }}</p>
   </div>
 </div>
 <p-toast />

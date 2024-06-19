@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -10,11 +10,13 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { TranslateModule } from '@ngx-translate/core';
+import { UserActions } from '../../interface/user.action.interface';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule, ToastModule],
+  imports: [CommonModule, RouterModule, ToastModule, TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   providers: [MessageService],
@@ -31,7 +33,7 @@ export class ProfileComponent implements OnInit {
   subscription?: Subscription;
 
   constructor(
-    private userService: UserService,
+    @Inject (UserService) private userService: UserActions,
     private router: Router,
     private authService: AuthenticationService,
     private messageService: MessageService

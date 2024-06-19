@@ -17,7 +17,9 @@
   },
   "comments": {
     "comments": "Komentari",
-    "commentEmpty": "Nema komentara"
+    "commentEmpty": "Nema komentara",
+    "writeComment": "Napiši komentar...",
+    "addComment":"Dodaj komentar"
   },
   "homepageSlider": {
     "readMore": "Pročitaj više"
@@ -26,7 +28,18 @@
     "search": "Pretraži",
     "readMore": "Pročitaj više",
     "noProject": "Projekt nije pronađen",
-    "enterTerm": "Upiši pojam za pretraživanje"
+    "enterTerm": "Upiši pojam za pretraživanje",
+    "clear": "Očisti"
+  },
+  "favorites":{
+    "yfp": "Vaši omiljeni projekti",
+    "open": "Otvori",
+    "remove": "Ukloni",
+    "cateogry":"Kategorija",
+    "noProject": "Trenutno nemate omiljenih projekata.",
+    "discover" :"Istraži",
+    "removeF":"Ukolni iz favorita",
+    "addF":"Dodaj u favorite"
   },
   "home": {
     "title": "DIY projekti i rukotvorine",
@@ -58,20 +71,35 @@
     "readMore": "Pročitaj više"
   },
   "profile": {
-    "createProject": "Izradi projekt",
+    "editProfile" : "UREDI PROFIL",
+    "createProject": "IZRADI PROJEKT",
     "category": "Kategorije od interesa",
     "publishedProjects": "Objavljeni projekti",
     "commAndLike": "Komentari i ozanke sviđa mi se",
     "showCommAndLike": "Prikaži komentare i oznake sviđa mi se",
     "comments": "Komentari",
-    "likes": "Oznake sviđa mi se"
+    "likes": "Oznake sviđa mi se",
+    "open": "Otvori projekt",
+    "noComments" : "Trenutno nema komentara.",
+    "published": "Objavljeno: ",
+    "delete" : "Obriši komentar",
+    "dislike" : "Ne sviđa mi se",
+    "noLikes" :"Bez oznaka sviđa mi se",
+    "username" : "Korisničko ime",
+    "email" : "Email",
+    "project" : "Projekti"
   },
   "projectForm": {
     "title": "Naslov",
+    "titlereq" : "Potreban naslov.",
     "content": "Sadržaj",
     "category": "Kategorija",
     "complexity": "Sloenost",
-    "submit": "Podnesi"
+    "submit": "Podnesi",
+    "contentreq" : "Potreban sadržaj.",
+    "description": "Opis",
+    "descriptionreq" : "Potreban opis.",
+    "categoryreq" : "Potrebno odabrati kategoriju."
   },
   "register": {
     "back": "Natrag",
@@ -82,8 +110,9 @@
   },
 
   "tutorials": {
-    "tutorials": "Tutorijali",
-    "readMore": "Pročitaj više"
+    "tutorials": "TUTORIJALI",
+    "readMore": "Pročitaj više",
+    "placeHolder" : "Upiši riječ"
   },
   "userSettings": {
     "userSettings": "Postavke korisnika",
