@@ -1,38 +1,7 @@
-<div class="homePage__Header">
-  <div class="homePage__HeaderTitle">
-    <p>{{ "home.title" | translate }}</p>
-    <h1>
-      {{ "home.description1" | translate }}, <br />
-      {{ "home.description2" | translate }}
-    </h1>
-    <button>{{ "home.discover" | translate }}</button>
-  </div>
-  <div class="homePage__HeaderImage">
-    <img src="../../../assets/images/home-page.jpg" alt="" />
-  </div>
-</div>
+<app-homepage-header></app-homepage-header>
 
 <div class="homePage__Offers contentWrapper">
-  <div class="homePage__OffersImage">
-    <div class="homePage__OffersImageInner">
-      <img
-        src="../../../assets/images/news-placeholder.jpg"
-        alt="What we offer"
-      />
-    </div>
-  </div>
-  <div class="homePage__OffersText">
-    <h2>{{ "home.title2" | translate }}</h2>
-    <ul>
-      <li>{{ "home.li1" | translate }}</li>
-      <li>{{ "home.li2" | translate }}</li>
-      <li>{{ "home.li3" | translate }}</li>
-      <li>{{ "home.li4" | translate }}</li>
-      <li>{{ "home.li5" | translate }}</li>
-      <li>{{ "home.li6" | translate }}</li>
-      <li>{{ "home.li7" | translate }}</li>
-    </ul>
-  </div>
+  <app-homepage-offers></app-homepage-offers>
 </div>
 
 <div class="homePage__Discover contentWrapper">

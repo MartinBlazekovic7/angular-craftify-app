@@ -1,0 +1,5 @@
+<div *ngIf="comment">
+  <i>{{ comment.user.username }}</i>
+  <i>{{ comment.commentTime.slice(0, 10) }}</i>
+</div>
+<p>{{ comment?.comment }}</p>

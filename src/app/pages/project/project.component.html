@@ -53,15 +53,7 @@
   </div>
   } @else {
   <div class="comments__Container">
-    @for (comment of project.comments; track comment) {
-    <div class="comment">
-      <div>
-        <i>{{ comment.user.username }}</i>
-        <i>{{ comment.commentTime.slice(0, 10) }}</i>
-      </div>
-      <p>{{ comment.comment }}</p>
-    </div>
-    }
+    <app-comments [comments]="project.comments"></app-comments>
     <div *ngIf="isUserLoggedIn" class="comments__AddComment">
       <textarea
         [(ngModel)]="newComment"

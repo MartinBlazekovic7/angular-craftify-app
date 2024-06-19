@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProjectService } from '../services/project.service';
+import { ProjectService } from '../../services/project.service';
 import { Subscription } from 'rxjs';
-import { Project } from '../models/project.interface';
+import { Project } from '../../models/project.interface';
 
 @Component({
   selector: 'app-homepage-search',
