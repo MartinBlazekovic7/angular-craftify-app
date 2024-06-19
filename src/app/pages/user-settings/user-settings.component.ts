@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   UntypedFormBuilder,
@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LanguageService } from '../../services/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { UserActions } from '../../interface/user.action.interface';
 
 @Component({
   selector: 'app-user-settings',
@@ -35,7 +36,7 @@ export class UserSettingsComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private userService: UserService,
+    @Inject(UserService) private userService: UserActions,
     private messageService: MessageService,
     private languageService: LanguageService,
     public translateService: TranslateService

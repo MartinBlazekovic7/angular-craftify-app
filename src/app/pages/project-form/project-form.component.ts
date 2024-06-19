@@ -15,11 +15,12 @@ import { UserProfile } from '../../models/user-profile.interface';
 import { UserService } from '../../services/user.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-project-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule, ToastModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, ToastModule, TranslateModule],
   templateUrl: './project-form.component.html',
   styleUrl: './project-form.component.scss',
   providers: [MessageService],

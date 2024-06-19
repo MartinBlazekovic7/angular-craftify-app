@@ -17,7 +17,9 @@
   },
   "comments": {
     "comments": "Comments",
-    "commentEmpty": "No comments"
+    "commentEmpty": "No comments",
+    "writeComment" : "Write comment...",
+    "addComment" :"Add comment"
   },
   "homepageSlider": {
     "readMore": "Read more"
@@ -26,13 +28,24 @@
     "search": "Search",
     "readMore": "Read more",
     "noProject": "PRoject not found",
-    "enterTerm": "Enter search term"
+    "enterTerm": "Enter search term",
+    "clear": "Clear"
+  },
+  "favorites":{
+    "yfp": "Your favourite projects",
+    "open": "Open",
+    "remove": "Remove",
+    "category": "Category",
+    "noProject": "You have no favorite projects yet.",
+    "discover": "Discover",
+    "removeF" : "Remove from favorites",
+    "addF": "Add to favorites"
   },
   "home": {
     "title": "DIY project i handcrafts",
     "description1": "Making connections",
     "description2": "One project at a time",
-    "discover": "Search",
+    "discover": "Discover",
     "title2": "What we offer:",
     "li1": "Discover projects",
     "li2": "Add to favourites",
@@ -58,20 +71,35 @@
     "readMore": "Read more"
   },
   "profile": {
-    "createProject": "Create project",
+    "editProfile": "EDIT PROFILE",
+    "createProject": "CREATE PROJECT",
     "category": "Category of interest",
     "publishedProjects": "Publshed projcets",
     "commAndLike": "Commnets and likes",
     "showCommAndLike": "Show comments and likes",
     "comments": "Comments",
-    "likes": "Likes"
+    "likes": "Likes",
+    "open": "Open project",
+    "noComments": "No Comments yet.",
+    "published": "Published on: ",
+    "delete" :"Delete comment",
+    "dislike" :"Dislike",
+    "noLikes" :"No likes yet",
+    "username" :"Username",
+    "email": "Email",
+    "project" : "Projects"
   },
   "projectForm": {
     "title": "Title",
+    "titlereq": "Title is required.",
     "content": "Content",
     "category": "Category",
     "complexity": "Complexity",
-    "submit": "Submit"
+    "submit": "Submit",
+    "contentreq" : "Content is required.",
+    "description" : "Description",
+    "descriptionreq" : "Description is required.",
+    "categoryreq" : "Category is required."
   },
   "register": {
     "back": "Back",
@@ -82,8 +110,9 @@
   },
 
   "tutorials": {
-    "tutorials": "Tutorials",
-    "readMore": "Read more"
+    "tutorials": "TUTORIALS",
+    "readMore": "Read more",
+    "placeHolder": "Search keywords"
   },
   "userSettings": {
     "userSettings": "User Settings",

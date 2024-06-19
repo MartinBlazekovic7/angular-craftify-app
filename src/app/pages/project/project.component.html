@@ -21,7 +21,7 @@
             <i class="pi pi-bookmark"></i>
             }
             <span>
-              {{ inFavorites ? "Remove from Favorites" : "Add to favorites" }}
+              {{ inFavorites ? ("favorites.removeF" | translate) : ("favorites.addF" | translate) }}
             </span>
           </button>
         </div>
@@ -44,12 +44,12 @@
 
 <div class="comments__Wrapper contentWrapper">
   <div class="comments__Subtitle">
-    <h2>Comments ({{ project.comments.length }})</h2>
+    <h2>{{"comments.comments" | translate }} ({{ project.comments.length }})</h2>
   </div>
 
   @if(project.comments.length === 0) {
   <div class="comments__Empty">
-    <p>No comments yet</p>
+    <p>{{"comments.commentsEmpty" | translate }}</p>
   </div>
   } @else {
   <div class="comments__Container">
@@ -57,9 +57,9 @@
     <div *ngIf="isUserLoggedIn" class="comments__AddComment">
       <textarea
         [(ngModel)]="newComment"
-        placeholder="Write a comment..."
+        placeholder="{{'comments.writeComments' | translate}}"
       ></textarea>
-      <button (click)="addComment()">Add comment</button>
+      <button (click)="addComment()">{{"comments.addComment" | translate }}</button>
     </div>
   </div>
   }

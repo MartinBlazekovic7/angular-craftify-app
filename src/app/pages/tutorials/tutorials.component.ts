@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TutorialService } from '../../services/tutorial.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Tutorial } from '../../models/tutorial.interface';
+import { TranslateModule } from '@ngx-translate/core';
+import { GetAllTutorialsService } from '../../interface/getAllTutorials.interface';
+import { TutorialService } from '../../services/tutorial.service';
 
 @Component({
   selector: 'app-tutorials',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './tutorials.component.html',
   styleUrl: './tutorials.component.scss',
 })
@@ -20,7 +22,7 @@ export class TutorialsComponent implements OnInit, OnDestroy{
 
   tutorials?: Tutorial[] = [];
 
-  constructor(private tutorialService: TutorialService, private router: Router){}
+  constructor(@Inject(TutorialService) private tutorialsService: GetAllTutorialsService, private router: Router){}
 
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class TutorialsComponent implements OnInit, OnDestroy{
   }
 
   getTutorials(): void{
-    this.subscription = this.tutorialService.getAllTutorials().subscribe({
+    this.subscription = this.tutorialsService.getAll_Tutorials().subscribe({
       next: (tutorials: Tutorial[]) =>{
         this.tutorials = tutorials;
         console.log(this.tutorials);

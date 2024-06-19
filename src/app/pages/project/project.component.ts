@@ -10,11 +10,12 @@ import { UserProfile } from '../../models/user-profile.interface';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { CommentDTO } from '../../models/comment.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommentsComponent, CommonModule, FormsModule],
+  imports: [CommentsComponent, CommonModule, FormsModule, TranslateModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss',
 })

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { Subscription } from 'rxjs';
 import { Project } from '../../models/project.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-homepage-search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './homepage-search.component.html',
   styleUrl: './homepage-search.component.scss',
 })

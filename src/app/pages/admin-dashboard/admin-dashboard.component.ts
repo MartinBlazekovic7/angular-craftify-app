@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user.service';
-import { Component } from '@angular/core';
+import { Component, INJECTOR, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Items } from '../../enums/items.enum';
 import { ProjectService } from '../../services/project.service';
@@ -15,6 +15,9 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
+import { TutorialManagmentService } from '../../interface/tutorialManagment.interface';
+import { GetAllTutorialsService } from '../../interface/getAllTutorials.interface';
+import { UserActions } from '../../interface/user.action.interface';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -86,11 +89,12 @@ export class AdminDashboardComponent {
 
   constructor(
     private projectService: ProjectService,
-    private userService: UserService,
-    private tutorialService: TutorialService,
+    @Inject(UserService) private userAction: UserActions,
     private newsService: NewsDetailService,
     private categoryService: CategoryService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    @Inject(TutorialService) private tutorialManagmentService: TutorialManagmentService,
+    @Inject(TutorialService) private tutorialService: GetAllTutorialsService
   ) {}
 
   getItems(item: Items) {
@@ -102,7 +106,7 @@ export class AdminDashboardComponent {
       });
     }
     if (item === 'tutorials') {
-      this.tutorialService.getAllTutorials().subscribe((tutorials) => {
+      this.tutorialService.getAll_Tutorials().subscribe((tutorials) => {
         this.tutorials = tutorials;
       });
     }
@@ -112,7 +116,7 @@ export class AdminDashboardComponent {
       });
     }
     if (item === 'users') {
-      this.userService.getAllUsers().subscribe((users) => {
+      this.userAction.getAllUsers().subscribe((users) => {
         this.users = users;
       });
     }
@@ -244,7 +248,7 @@ export class AdminDashboardComponent {
       complexityId: this.selectedTutorial!.complexity.id,
     };
 
-    this.tutorialService.editTutorial(updatedTutorial).subscribe(() => {
+    this.tutorialManagmentService.edit_Tutorial(updatedTutorial).subscribe(() => {
       this.toggleModalTutorialEdit = false;
       this.tutorialEditForm.reset();
       const tutorial: Tutorial = {
@@ -286,7 +290,7 @@ export class AdminDashboardComponent {
       name: this.userEditForm.value.name,
     };
 
-    this.userService.updateUser(updatedUser.id!).subscribe(() => {
+    this.userAction.updateUser(updatedUser.id!).subscribe(() => {
       this.toggleModalUserEdit = false;
       this.userEditForm.reset();
     });
@@ -323,7 +327,7 @@ export class AdminDashboardComponent {
   }
 
   deleteTutorial(id: number) {
-    this.tutorialService.deleteTutorial(id).subscribe(() => {
+    this.tutorialManagmentService.delete_Tutorial(id).subscribe(() => {
       this.tutorials = this.tutorials.filter((tutorial) => tutorial.id !== id);
     });
   }
@@ -343,7 +347,7 @@ export class AdminDashboardComponent {
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe(() => {
+    this.userAction.deleteUser(id).subscribe(() => {
       this.users = this.users.filter((user) => user.id !== id);
     });
   }
